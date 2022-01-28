@@ -11,12 +11,17 @@ window.onload = () => {
 			formData.append('input_filename' , input.files[0]);
       formData.append('style_filename' , input0.files[0]);
 			$.ajax({
-				url: "http://127.0.0.1:5000/styleImage", // fix this to your liking
+				url: "https://tfhub-styletransfer-webapp.uk.r.appspot.com/styleImage", // fix this to your liking
 				type:"POST",
+        crossDomain: true,
 				data: formData,
+        dataType: 'json',
+        xhrFields: {
+          withCredentials: true
+        },
+        contentType: 'application/json; charset=utf-8',
 				cache: false,
 				processData:false,
-				contentType:false,
 				error: function(data){
 					console.log("upload error" , data);
 					console.log(data.getAllResponseHeaders());
