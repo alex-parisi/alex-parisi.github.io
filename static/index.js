@@ -11,7 +11,7 @@ window.onload = () => {
 			formData.append('input_filename' , input.files[0]);
       formData.append('style_filename' , input0.files[0]);
 			$.ajax({
-				url: "http://localhost:5000/styleImage", // fix this to your liking
+				url: "https://styletransfer-webapp.uk.r.appspot.com/styleImage", // fix this to your liking
 				type:"POST",
 				data: formData,
 				cache: false,
