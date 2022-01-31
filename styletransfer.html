@@ -33,16 +33,31 @@
 								<section>
 									<header class="major">
 										<h2>Style Transfer Web App</h2>
-										<h2>In Development, Not Working</h2>
 									</header>
                   <script
                     src="https://code.jquery.com/jquery-3.3.1.min.js"
                     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                     crossorigin="anonymous"></script>
                   <script type="text/javascript" src="./static/index.js"></script>
+                  <p>This web app implements the "TF Hub Style Transfer Wrapper" package I created. It allows anyone to uploads two images - a content image and a style image - and then generate a new image that is the original content image with the transfered style of the style image.</p>
+                  <a class="image left"><img src="images/styletransfer-example.jpg"></a>
+                  <p>This is an example of a typical input content and style image, with its associated style-transferred output image.</p>
+                  <p>You can view the Github repo of the original package here: <a href="https://github.com/alex-parisi/tfhub-styletransfer-wrapper">tfhub-styletransfer-wrapper</a></p>
+                  <p>You can view the Github repo of the Flask web app here: <a href="https://github.com/alex-parisi/styletransfer-webapp">styletransfer-webapp</a>
+                  <p>The web app was written using Flask and Python 3.7, and hosted on Google Cloud's App Engine service. Please do not abuse this webapp as it is just for personal use.</p>
+                </section>
+                
+                <section>
+                  <header class="minor">
+                    <h3>Instructions:</h3>
+                  </header>
+                  <p>Upload two images: one content image and one style image. The web app will regenerate the content image using the style of the style image. After selecting both the content and style images, press the Submit button below. Then, wait a little bit for the web app to load and apply the TF Hub model. Once done, you should see the cropped content and style images, as well as the output stylized image.</p>
+                  <p>Please note that this web app is very new and may still have some bugs, so please follow the instructions correctly and (if possible) let me know of any errors you encounter.</p>
+                </section>
+                <section>
                   <p>Content Image:<br><input type="file" id="input_file" name="input_filename"></p>
-                  <p>Style Image:<br><input type="file" id="style_file" name="style_filename"></p>
-                  <button name="send" id="sendbutton">Submit</button>
+                  <p>Style Image:<br><input type="file" id="style_file" name="style_filename"></p><br>
+                  <button name="send" id="sendbutton">Submit</button><a href="" class="image left"><img id="loading_icon" src="images/loading.gif"></a>
 								</section>
               
               <!-- Section -->
@@ -51,19 +66,19 @@
                     <article>
                       <h3>Content Image</h3>
                         <ul class="alt">
-                          <li><a class="image fit"><img id="imagebox" src=""></a></li>
+                          <li><a id="content_linker" href="" class="image fit"><img id="imagebox" src=""></a></li>
                         </ul>
                     </article>
                     <article>
                       <h3>Style Image</h3>
                         <ul class="alt">
-                          <li><a class="image fit"><img id="imagebox_style" src=""></a></li>
+                          <li><a id="style_linker" href="" class="image fit"><img id="imagebox_style" src=""></a></li>
                         </ul>
                     </article>
                     <article>
                       <h3>Stylized Image</h3>
                         <ul class="alt">
-                          <li><a class="image fit"><img id="imagebox_output" src=""></a></li>
+                          <li><a id="stylized_linker" href="" class="image fit"><img id="imagebox_output" src=""></a></li>
                         </ul>
                     </article>
                   </div>
