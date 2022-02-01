@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Parisi - Style Transfer Web App</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+                  <strong>atparisi.com</strong>
+									<!--<a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>-->
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/alextparisi/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://github.com/alex-parisi" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>DCGAN</h2>
+									</header>
+                  <h3>Summary</h3>
+                  <p>
+                    <img class="image left" src="images/dcgan.png" alt=""/>
+                    The image to the left describes the model architecture for the generator in a Deep Convolutional Generator Adversarial Network (DCGAN). This project implements a basic DCGAN for generating pictures of faces at a 64x64 resolution.<br><br>
+                    The project was originally started as a standalone Python project, but facing incredibly long training times on my local machine, I looked into using Google Colab notebooks as they allow access to 8 TPU's for a short period of time. Using TPU's reduced the training time by a factor of 10.<br><br>
+                    Over time, the network gets better at generating faces while also getting better at determing which faces are generated and which are from the original dataset. You can view the project's Github page and open the project in a Google Colab notebook using these links:
+                    <ul class="actions">
+                        <li><a href="https://github.com/alex-parisi/DCGAN-Face-Generator/blob/main/DCGAN_Face_Generator.ipynb" class="button icon brands fa-github">Github</a></li>
+                        <li><a href="https://colab.research.google.com/github/alex-parisi/DCGAN-Face-Generator/blob/main/DCGAN_Face_Generator.ipynb" class="button">Google Colab</a></li>
+                    </ul>
+                  </p>
+                </section>
+                <section>
+                  <h3>How It Works</h3>
+                  <p>
+                    <img class="image left" src="images/dcgan-model.jpg" alt=""/>
+                    The image to the left (from <a href="https://developers.google.com/machine-learning/gan/generator">[1]</a>) shows the overall structure of the DCGAN. A random vector the length of the latent space is generated and used as an input to the generator network, which then generates a fake image. The fake image and an image from the dataset are used as inputs to the discriminator network, which determines which images is from the original dataset and which is the fake.<br><br>
+                    The dataset is the celebA dataset commonly used in facial recognition and face generation. It contains over 200,000 eye-aligned images of celebrity faces. To simplify this project and allow for reasonable training and evaluation times, the images are downsized to 64x64 and the network width is based off that. In order to use Google Colab, I had to host the celebA dataset on a Google Cloud Storage bucket - it currently has public access so the linked notebook should have access to it.
+                  </p>
+                  <div class="posts">
+                    <article style="width:calc(50% - 6em)">
+                      <h4>The Generator</h4>
+                      <p>
+                        <img class="image left" src="images/generator.png" alt="" style="max-width:50%"/>
+                        As shown on the left, the generator takes an input vector of size 128 and uses a fully connected layer in conjunction with 4 convolution layers to upscale the latent space to the correct image size.<br><br>
+                        The ReLU functions all use an alpha of 0.2 and the convolution layers use a kernel size of 5 and a stride of 2. The number of filters used in the convolution layers are 512, 256, 128, and 3 respectively. The fourth and final convolution layer also uses a sigmoid activation function.
+                      </p>
+                    </article>
+                    <article style="width:calc(50% - 6em)">
+                      <h4>The Discriminator</h4>
+                      <img class="image left" src="images/discriminator.png" alt="" style="max-width:50%"/>
+                      As shown on the left, the discriminator takes an input tensor of size (64, 64, 3) and uses 4 convolution filters in conjunction with a fully connected layer to extract features from the input and determine the probability that the input is real or fake.<br><br>
+                      The ReLU functions all use an alpha of 0.2 and the convolution layers use a kernel size of 5 and a stride of 2. The number of filters used in the convolution layers are 128, 256, 512, and 1024 respectively. The dropout layer uses a dropout rate of 20%, and the fully connected layer uses a sigmoid activation function.
+                    </article>
+                  </div>
+                </section>
+                <section>
+                  <h3>Results</h3>
+                  <div class="box alt">
+                    <div class="row gtr-50 gtr-uniform">
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan1.gif" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan2.gif" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan3.gif" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan4.gif" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan5.gif" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan6.gif" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan7.gif" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan8.gif" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan9.gif" alt="">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  The above GIFs show the network training over 100 epochs. Over time, the generator gets better at generating faces and the discriminator will get better at spotting fakes. Just taking a quick glance at the GIFs, it looks like the network begins to generate decent faces, and then quality begins to degrade - this is most likely due to overfitting and can possibly be mitigated by using a larger dataset.<br><br>
+                  <div class="box alt">
+                    <div class="row gtr-50 gtr-uniform">
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan1_30.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan2_30.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan3_30.png" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan4_30.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan5_30.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan6_30.png" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan7_30.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan8_30.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan9_30.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  The images above are a snapshot of the network after 30 epochs of training. The network has already learned how to generate and discriminate basic facial structure and can even work with objects on the face such as sunglasses.<br><br>
+                  <div class="box alt">
+                    <div class="row gtr-50 gtr-uniform">
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan1_60.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan2_60.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan3_60.png" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan4_60.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan5_60.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan6_60.png" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan7_60.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan8_60.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan9_60.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  The images above are a snapshot of the network after 60 epochs of training. While the network has gotten better at refining some facial detail, distortions are beginning to be introduced.<br><br>
+                  <div class="box alt">
+                    <div class="row gtr-50 gtr-uniform">
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan1_90.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan2_90.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan3_90.png" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan4_90.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan5_90.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan6_90.png" alt="">
+                        </span>
+                      </div>
+                      <!--Break-->
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan7_90.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan8_90.png" alt="">
+                        </span>
+                      </div>
+                      <div class="col-1">
+                        <span class="image fit">
+                          <img src="images/dcgan9_90.png" alt="">
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  The images above are a snapshot of the network after 90 epochs of training. The distortions have become very apparent.
+                </section>
+                <section>
+                  <h3>References</h3>
+                  <p>[1] <a href="https://developers.google.com/machine-learning/gan/generator">https://developers.google.com/machine-learning/gan/generator</a></p>
+                  <p>[2] <a href="https://www.tensorflow.org/tutorials/generative/dcgan">https://www.tensorflow.org/tutorials/generative/dcgan</a></p>
+                  <p>[3] <a href="https://keras.io/examples/generative/dcgan_overriding_train_step/">https://keras.io/examples/generative/dcgan_overriding_train_step/</a></p>
+                </section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+                    <li><span class="opener">Style Transfer</span>
+                      <ul>
+                        <li><a href="styletransfer.html">Web App</a></li>
+                        <li><a href="styletransfer-info.html">Project Info</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="dcgan-info.html" style="color:#f56a6a">DCGAN<a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p>Last Updated: 02/01/2022</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
