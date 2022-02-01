@@ -131,19 +131,27 @@
                     <h2>Projects</h2>
                   </header>
                   <div class="posts">
+                    <!-- Article -->
                     <article>
                       <h3>Style Transfer</h3>
-                      <a href="https://github.com/alex-parisi/tfhub-styletransfer-wrapper" class="image fit"><img src="images/styletransfer.jpg" alt="" /></a>
+                      <ul class="actions fit">
+                        <li><a href="styletransfer-info.html" class="button fit">Project Page</a></li>
+                      </ul>
+                      <img class="image fit" src="images/styletransfer.jpg" alt="">
                       <p>Pictured above is the result of applying the style of an abstract painting to a picture of a cute dog.</p>
-                      <p>This was accomplished by implementing a neural network from the Tensorflow Hub that is pre-trained on a large dataset of paintings to extract the stylistic features of a painting, and then redraw the original image in this extracted style.</p>
                       <p>I have written a Python package you can install with pip that encapsulates the model and associated evaluation functions into a simple wrapper. You can view the Github and PyPI project pages with the links below, as well as view the original neural network model on Tensorflow Hub.</p>
                       <ul class="actions">
                         <li><a href="https://github.com/alex-parisi/tfhub-styletransfer-wrapper" class="button icon brands fa-github">Github</a></li>
                         <li><a href="https://pypi.org/project/tfhub-styletransfer-wrapper/" class="button">PyPI</a></li>
                         <li><a href="https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2" class="button">TF Hub</a></li>
                       </ul>
-                      <p>I also plan on writing a web application that uses this style transfer wrapper and hosting it on this website. I will include a link to it once it is fully implemented.</p>
+                      <p>There is also an accompanying web application I wrote using Flask and deployed on the Google Cloud Application Engine. You can play with it here:</p>
+                      <ul class="actions">
+                        <li><a href="styletransfer.html" class="button">Web App</a></li>
+                      </ul>
                     </article>
+                    
+                    <!-- Article -->
                     <article>
                       <h3>DCGAN Face Generator</h3>
                       <a href="https://github.com/alex-parisi/DCGAN-Face-Generator/blob/main/DCGAN_Face_Generator.ipynb" class="image fit"><img src="images/dcgan.png" alt="" /></a>
@@ -206,6 +214,8 @@
                         <li><a href="https://colab.research.google.com/github/alex-parisi/DCGAN-Face-Generator/blob/main/DCGAN_Face_Generator.ipynb" class="button">Google Colab</a></li>
                       </ul>
                     </article>
+                    
+                    <!-- Article -->
                     <article>
                       <h3>Chessboard Evaluation using CNN's</h3>
                       <a href="https://github.com/alex-parisi/chess_NN" class="image fit"><img src="images/chess.jpg" alt="" /></a>
@@ -217,6 +227,7 @@
                         <li><a href="https://github.com/alex-parisi/chess_NN" class="button icon brands fa-github">Github</a></li>
                       </ul>
                     </article>
+                    
                   </div>
                 </section>
 
@@ -232,8 +243,13 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="index.html">Homepage</a></li>
-                    <li><a href="styletransfer.html">Style Transfer<br>Web App</a></li>
+										<li><a href="index.html" style="color:#f56a6a">Homepage</a></li>
+                    <li><span class="opener">Style Transfer</span>
+                      <ul>
+                        <li><a href="styletransfer.html">Web App</a></li>
+                        <li><a href="styletransfer-info.html">Project Info</a></li>
+                      </ul>
+                    </li>
 									</ul>
 								</nav>
 
@@ -276,7 +292,7 @@
 
 							<!-- Footer -->
 								<footer id="footer">
-									<p>Last Updated: 01/30/2022</p>
+									<p>Last Updated: 01/31/2022</p>
 								</footer>
 
 						</div>
