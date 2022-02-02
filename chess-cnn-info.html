@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Alex Parisi - Chess CNN</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+                  <strong>atparisi.com</strong>
+									<!--<a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>-->
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/alextparisi/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+										<li><a href="https://github.com/alex-parisi" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Chessboard Position Evaluation using a CNN</h2>
+									</header>
+                  <h3>Summary</h3>
+                  <img class="image left" src="images/chess_alt.jpg" alt="" />
+                  <p>The purpose of this project was to implement a CNN trained on chessboard positions and their <a href="https://stockfishchess.org/">Stockfish</a> evaluation in an attempt to mimic the evaluator. The CNN is provided all the pieces, represented by 8x8 'bitboards', as well as all available moves for each player. This allows the network to train more on strategic moves rather than wasting time learning the actual rules of chess.</p>
+                  <p>The results were promising on evaluating basic chessboard positions, until I realized I was not evaluating any positions containing checkmate. This would prevent the network from learning what rules ultimately lead to a victory and the highest evaluation score. I began to generate datasets with very high evaluation scores assigned to checkmate scenarios, but as the network began to learn checkmate scenarios, it got worse at evaluating basic scenarios.</p>
+                  <p>More work needs to be done to determine the correct evaluation to assign to checkmates that allows the network to learn both checkmate scenarios as well as basic position evaluations.</p>
+                  <p>Once the evaluator network is completed, I can use the evaluation to improve the results of a Monte-Carlo tree search in a project to be worked on at a later date. You can view the Github project here:</p>
+                  <ul class="actions">
+                    <li><a href="https://github.com/alex-parisi/chess_NN" class="button icon brands fa-github">Github</a></li>
+                  </ul>
+                  
+                  
+                </section>
+                <section>
+                  <h3>How It Works</h3>
+                  <div class="posts">
+                    <article style="width:calc(50% - 6em)">
+                      <u><h4>The Convolutional Neural Network (CNN)</h4></u>
+                      <img class="image left" src="images/chess-cnn.png" alt="" style="max-width:50%"/>
+                      The image to the left details the network architecture used in this project. There are four convolution layers, each with 32 filters, a kernel size of 3, and a stride of 1. The first fully connected layer uses a ReLU activation function, and the second and final fully connected layer uses a sigmoid activation function.<br><br>
+                    </article>
+                    <article style="width:calc(50% - 6em)">
+                      <u><h4>The Dataset</h4></u>
+                      <a href="https://www.chessprogramming.org/Bitboard_Board-Definition" class="image left"  style="max-width:60%"><img src="images/Bitboard.gif" alt=""/></a>
+                      The image to the left demonstrates what a bitboard is - a bit representation of a piece location in an 8x8 matrix of zeros. For this project, the dataset contains fourteen bitboards - twelve bitboards represent the six pieces of each color, with the remaining two bitboards containing all the possible moves for white and black. <br><br>
+                      Giving the network information about piece count and piece location is useful for determining which player has the point and position advantage, and giving the network information about where the pieces can move allows the network to begin to understand a bit of the strategy of chess.
+                    </article>
+                  </div>
+                </section>
+                <section>
+                  <h3>Results</h3>
+                  <p>Before generating positions that included checkmate, the network had reliable accuracy at evaluating chessboard position alone. However, once I included checkmate positions in the dataset, the accuracy of the network went down dramatically. This is because the value I assigned checkmate was too high, and can be solved with some normalization of the training data.</p>
+                  <p>Before continuing, a better value needs to be assigned to checkmate. I also need to generate some figures that show model accuracy vs. training time.</p>
+                </section>
+                <section>
+                  <h3>References</h3>
+                  [1] <a href="https://arxiv.org/pdf/1509.01549.pdf">Matthew Lai. Giraffe: Using Deep Reinforcement Learning to Play Chess. Submitted to the Advanced Computing of Imperial College London, 2015.</a>
+                </section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+                    <li><span class="opener">Style Transfer</span>
+                      <ul>
+                        <li><a href="styletransfer.html">Web App</a></li>
+                        <li><a href="styletransfer-info.html">Project Info</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="dcgan-info.html">DCGAN Face Generator</a></li>
+                    <li><a href="chess-cnn-info.html" style="color:#f56a6a">Chessboard CNN</a></li>
+									</ul>
+								</nav>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p>Last Updated: 02/02/2022</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

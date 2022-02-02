@@ -221,8 +221,11 @@
                     
                     <!-- Article -->
                     <article>
-                      <h3>Chessboard Evaluation using CNN's</h3>
-                      <a href="https://github.com/alex-parisi/chess_NN" class="image fit"><img src="images/chess.jpg" alt="" /></a>
+                      <h3>Chess Evaluation using CNN's</h3>
+                      <ul class="actions fit">
+                        <li><a href="chess-cnn-info.html" class="button fit">Project Page</a></li>
+                      </ul>
+                      <img class="image fit" src="images/chess.jpg" alt="" /></a>
                       <p>The purpose of this project was to implement a CNN trained on chessboard positions and their Stockfish evaluation in an attempt to mimic the evaluator. The CNN is provided all the pieces, represented by 8x8 'bitboards', as well as all available moves for each player. This allows the network to train more on strategic moves rather than wasting time learning the actual rules of chess.</p>
                       <p>The results were promising on evaluating basic chessboard positions, until I realized I was not evaluating any positions containing checkmate. This would prevent the network from learning what rules ultimately lead to a victory and the highest evaluation score. I began to generate datasets with very high evaluation scores assigned to checkmate scenarios, but as the network began to learn checkmate scenarios, it got worse at evaluating basic scenarios.</p>
                       <p>More work needs to be done to determine the correct evaluation to assign to checkmates that allows the network to learn both checkmate scenarios as well as basic position evaluations.</p>
@@ -254,7 +257,8 @@
                         <li><a href="styletransfer-info.html">Project Info</a></li>
                       </ul>
                     </li>
-                    <li><a href="dcgan-info.html">DCGAN<a></li>
+                    <li><a href="dcgan-info.html">DCGAN Face Generator</a></li>
+                    <li><a href="chess-cnn-info.html">Chessboard CNN</a></li>
 									</ul>
 								</nav>
 
@@ -264,16 +268,16 @@
 										<h2>New Projects</h2>
 									</header>
 									<div class="mini-posts">
-                    <article style="color:#7f888f">
+                    <article>
 											Poetry generation using a recursive neural network (RNN). The network is trained on a corpus of poetry from the past 400 years, and then attempts generate "new" poems. Currently this project is working, just needs to be cleaned up, packaged, and published on Github/PyPI.
 										</article>
-										<article style="color:#7f888f">
+										<article>
 											Progressively Growing Generative Adversarial Network (ProGAN). This is a continuation of my DCGAN project, where instead of training the network on 64x64 images, train a smaller network on 4x4 images and slowly increase both the resolution of the training data as well as the depth of the generator and discriminator network.
 										</article>
-                    <article style="color:#7f888f">
+                    <article>
                       <p>Wrapper package for the SPICE model from TF Hub for pitch detection. This project will use the model provided by TF Hub to perform pitch recognition on a sample of the user signing, and then recreate the notes on a MIDI piano. The purpose of this project is to eventually integrate it with a web app.</p>
                     </article>
-                    <article style="color:#7f888f">
+                    <article>
                       <p>Wrapper package for ESRGAN model from TF Hub for image super resolution. This project will take a low-resolution image and attempt to upscale it using the model provided by the TF Hub in a neat package usage in a future web app to be hosted on this page.</p>
                     </article>
 									</div>
@@ -284,7 +288,7 @@
                   <header class="major">
                     <h2>Patents</h2>
                   </header>
-                  <a href="https://patents.google.com/patent/US20210074311A1">US20210074311A1: Adaptive beamforming microphone metadata transmission to coordinate acoustic echo cancellation in an audio conferencing system</a></p>
+                  <a href="https://patents.google.com/patent/US20210074311A1">US20210074311A1</a>: Adaptive beamforming microphone metadata transmission to coordinate acoustic echo cancellation in an audio conferencing system</p>
 									<header class="major">
 										<h2>Get in touch</h2>
 									</header>
@@ -297,7 +301,7 @@
 
 							<!-- Footer -->
 								<footer id="footer">
-									<p>Last Updated: 02/01/2022</p>
+									<p>Last Updated: 02/02/2022</p>
 								</footer>
 
 						</div>
