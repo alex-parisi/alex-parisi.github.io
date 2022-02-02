@@ -58,14 +58,14 @@
                     <article style="width:calc(50% - 6em)">
                       <h4>The Generator</h4>
                       <p>
-                        <img class="image left" src="images/generator.png" alt="" style="max-width:50%"/>
+                        <img class="image left" src="images/generator.PNG" alt="" style="max-width:50%"/>
                         As shown on the left, the generator takes an input vector of size 128 and uses a fully connected layer in conjunction with 4 convolution layers to upscale the latent space to the correct image size.<br><br>
                         The ReLU functions all use an alpha of 0.2 and the convolution layers use a kernel size of 5 and a stride of 2. The number of filters used in the convolution layers are 512, 256, 128, and 3 respectively. The fourth and final convolution layer also uses a sigmoid activation function.
                       </p>
                     </article>
                     <article style="width:calc(50% - 6em)">
                       <h4>The Discriminator</h4>
-                      <img class="image left" src="images/discriminator.png" alt="" style="max-width:50%"/>
+                      <img class="image left" src="images/discriminator.PNG" alt="" style="max-width:50%"/>
                       As shown on the left, the discriminator takes an input tensor of size (64, 64, 3) and uses 4 convolution filters in conjunction with a fully connected layer to extract features from the input and determine the probability that the input is real or fake.<br><br>
                       The ReLU functions all use an alpha of 0.2 and the convolution layers use a kernel size of 5 and a stride of 2. The number of filters used in the convolution layers are 128, 256, 512, and 1024 respectively. The dropout layer uses a dropout rate of 20%, and the fully connected layer uses a sigmoid activation function.
                     </article>
