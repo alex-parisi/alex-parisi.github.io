@@ -134,6 +134,44 @@
                   <div class="posts">
                     <!-- Article -->
                     <article>
+                      <h3>ESRGAN Super-resolution</h3>
+                      <ul class="actions fit">
+                        <li><a href="esrgan-info.html" class="button fit">Project Page</a></li>
+                      </ul>
+                      <div class="row gtr-50 gtr-uniform">
+                        <div class="col-6">
+                          <span class="image fit">
+                            <img src="images/paint_upscaled.png" alt="">
+                          </span>
+                        </div>
+                        <div class="col-6">
+                          <span class="image fit">
+                            <img src="images/esrgan-output.jpg" alt="">
+                          </span>
+                        </div>
+                        <div class="col-6">
+                          <span class="image fit">
+                            <img src="images/paint_upscaled - zoom2.png" alt="">
+                          </span>
+                        </div>
+                        <div class="col-6">
+                          <span class="image fit">
+                            <img src="images/esrgan-output - zoom2.jpg" alt="">
+                          </span>
+                        </div>
+                      </div>
+                      <br>
+                      <p>Above, there are a series of images showing the output of the ESRGAN model and a comparison against generic upscaling used in Microsoft paint.</p>
+                      <p>The Enhanced Super-Resolution Generative Adversarial Network, or ESRGAN, is an improvement of standard Super-Resolution Generative Adversarial Networks (SRGAN) via introduction of the Residual-in-Residual Dense Block (RRDB). Essentially, the model takes an image and upscales it by a factor of 4. The results are much cleaner than when compared to traditional methods of upscaling images.</p>
+                      <p>You can view the project's Github page, as well as look at the model on the Tensorflow Hub here:</p>
+                      <ul class="actions">
+                        <li><a href="https://github.com/alex-parisi/tfhub-esrgan-wrapper" class="button icon brands fa-github">Github</a></li>
+                        <li><a href="https://tfhub.dev/captain-pool/esrgan-tf2/1" class="button">TF Hub</a></li>
+                      </ul>
+                      <p>A web application developed with Flask and hosted on Google Cloud Services will be coming shortly.</p>
+                    </article>
+                    
+                    <article>
                       <h3>Style Transfer</h3>
                       <ul class="actions fit">
                         <li><a href="styletransfer-info.html" class="button fit">Project Page</a></li>
@@ -259,6 +297,12 @@
                     </li>
                     <li><a href="dcgan-info.html">DCGAN Face Generator</a></li>
                     <li><a href="chess-cnn-info.html">Chessboard CNN</a></li>
+                    <li><span class="opener">ESRGAN Super-resolution</span>
+                      <ul>
+                        <li><a href=#>Web App</a></li>
+                        <li><a href="esrgan-info.html">Project Info</a></li>
+                      </ul>
+                    </li>
 									</ul>
 								</nav>
 
@@ -276,9 +320,6 @@
 										</article>
                     <article>
                       <p>Wrapper package for the SPICE model from TF Hub for pitch detection. This project will use the model provided by TF Hub to perform pitch recognition on a sample of the user signing, and then recreate the notes on a MIDI piano. The purpose of this project is to eventually integrate it with a web app.</p>
-                    </article>
-                    <article>
-                      <p>Wrapper package for ESRGAN model from TF Hub for image super resolution. This project will take a low-resolution image and attempt to upscale it using the model provided by the TF Hub in a neat package usage in a future web app to be hosted on this page.</p>
                     </article>
 									</div>
 								</section>
@@ -301,7 +342,7 @@
 
 							<!-- Footer -->
 								<footer id="footer">
-									<p>Last Updated: 02/02/2022</p>
+									<p>Last Updated: 02/03/2022</p>
 								</footer>
 
 						</div>
