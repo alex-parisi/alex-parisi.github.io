@@ -282,6 +282,55 @@ function main() {
 	const github_btn = document.getElementById("github_button");
 	const email_btn = document.getElementById("email_button");
 
+	const miku_exp = document.getElementById("miku_exp");
+	const peraton_exp = document.getElementById("peraton_exp");
+	const crestron_exp = document.getElementById("crestron_exp");
+
+	const h31 = document.getElementById("h31");
+	const h32 = document.getElementById("h32");
+	const h33 = document.getElementById("h33");
+
+	const h41 = document.getElementById("h41");
+	const h42 = document.getElementById("h42");
+	const h43 = document.getElementById("h43");
+
+	const h51 = document.getElementById("h51");
+	const h52 = document.getElementById("h52");
+	const h53 = document.getElementById("h53");
+
+	const h61 = document.getElementById("h61");
+	const h62 = document.getElementById("h62");
+	const h63 = document.getElementById("h63");
+	const h64 = document.getElementById("h64");
+	const h65 = document.getElementById("h65");
+	const h66 = document.getElementById("h66");
+	const h67 = document.getElementById("h67");
+	const h68 = document.getElementById("h68");
+	const h69 = document.getElementById("h69");
+	const h610 = document.getElementById("h610");
+	const h611 = document.getElementById("h611");
+	const h612 = document.getElementById("h612");
+	const h613 = document.getElementById("h613");
+	const h614 = document.getElementById("h614");
+	const h615 = document.getElementById("h615");
+	const h616 = document.getElementById("h616");
+	const h617 = document.getElementById("h617");
+	const h618 = document.getElementById("h618");
+
+	const paper1 = document.getElementById("paper1");
+	const paper2 = document.getElementById("paper2");
+	const paper3 = document.getElementById("paper3");
+	const paper4 = document.getElementById("paper4");
+	const paper5 = document.getElementById("paper5");
+	const paper6 = document.getElementById("paper6");
+
+	const paper1_cont = document.getElementById("paper1_cont");
+	const paper2_cont = document.getElementById("paper2_cont");
+	const paper3_cont = document.getElementById("paper3_cont");
+	const paper4_cont = document.getElementById("paper4_cont");
+	const paper5_cont = document.getElementById("paper5_cont");
+	const paper6_cont = document.getElementById("paper6_cont");
+
 	exp_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
 	edu_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
 	pro_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
@@ -303,6 +352,48 @@ function main() {
 	github_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 	email_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 
+	h31.style.fontSize = 24.0 * (window.innerHeight / 991.0) + "px";
+	h32.style.fontSize = 24.0 * (window.innerHeight / 991.0) + "px";
+	h33.style.fontSize = 24.0 * (window.innerHeight / 991.0) + "px";
+
+	h41.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+	h42.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+	h43.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+
+	h51.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+	h52.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+	h53.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+	
+	h61.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h62.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h63.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h64.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h65.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h66.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h67.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h68.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h69.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h610.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h611.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h612.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h613.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h614.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h615.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h616.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h617.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+	h618.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+
+	miku_exp.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	peraton_exp.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	crestron_exp.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+
+	paper1.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	paper2.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	paper3.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	paper4.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	paper5.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	paper6.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+
 	experience_deetz.style.height = biz.clientHeight.toString().concat("px");
 	education_deetz.style.height = biz.clientHeight.toString().concat("px");
 	skills_deetz.style.height = biz.clientHeight.toString().concat("px");
@@ -315,6 +406,17 @@ function main() {
 	projects3_deetz.style.height = biz.clientHeight.toString().concat("px");
 	projects4_deetz.style.height = biz.clientHeight.toString().concat("px");
 	projects5_deetz.style.height = biz.clientHeight.toString().concat("px");
+
+	miku_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+	peraton_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+	crestron_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+
+	paper1_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+	paper2_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+	paper3_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+	paper4_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+	paper5_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+	paper6_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
 	
 	experience_deetz.hidden = true;
 	education_deetz.hidden = true;
@@ -345,6 +447,17 @@ function main() {
 	pro3_btn.addEventListener('animationend', addButtonHandler);
 	pro4_btn.addEventListener('animationend', addButtonHandler);
 	pro5_btn.addEventListener('animationend', addButtonHandler);
+
+	paper1.scrollTop = 0;
+	paper2.scrollTop = 0;
+	paper3.scrollTop = 0;
+	paper4.scrollTop = 0;
+	paper5.scrollTop = 0;
+	paper6.scrollTop = 0;
+
+	miku_exp.scrollTop = 0;
+	peraton_exp.scrollTop = 0;
+	crestron_exp.scrollTop = 0;
 
 	// Setup GLSL program
 	const program = createProgramFromSources(gl, [vs, fs]);
@@ -416,7 +529,60 @@ function main() {
 		github_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 		email_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 
-		if (activeDeetz != "")
+		h31.style.fontSize = 24.0 * (window.innerHeight / 991.0) + "px";
+		h32.style.fontSize = 24.0 * (window.innerHeight / 991.0) + "px";
+		h33.style.fontSize = 24.0 * (window.innerHeight / 991.0) + "px";
+	
+		h41.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+		h42.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+		h43.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+	
+		h51.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+		h52.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+		h53.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+		
+		h61.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h62.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h63.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h64.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h65.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h66.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h67.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h68.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h69.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h610.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h611.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h612.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h613.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h614.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h615.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h616.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h617.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+		h618.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
+
+		miku_exp.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		peraton_exp.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		crestron_exp.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+
+		paper1.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		paper2.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		paper3.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		paper4.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		paper5.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		paper6.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+
+		miku_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+		peraton_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+		crestron_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+
+		paper1_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+		paper2_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+		paper3_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+		paper4_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+		paper5_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+		paper6_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+
+		if ((activeDeetz != "") || (!opened))
 		{
 			experience_deetz.style.height = biz.clientHeight.toString().concat("px");
 			education_deetz.style.height = biz.clientHeight.toString().concat("px");

@@ -39,28 +39,33 @@
         <div id="experience_deetz" class="container-fluid py-3 px-3 shadow-lg text-center rounded-4 animate__animated animate__fadeIn animate__delay-1s" style="position: absolute; width: 40%; top: 10%; left: 42.5%; display: table-cell;">
           <h2><i class="bi bi-person-rolodex" style="font-size:1em"></i> Experience</h2>
           <hr>
-          <div id="carouselExperience" class="carousel slide">
+          <div id="carouselExperience" class="carousel slide carousel-dark">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExperience" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExperience" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExperience" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>          
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 500px;">
+                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="top:10%; bottom: 10%;">
                   <div class="row align-items-center">
-                    <div class="col">
-                      <h3 align="left"><b>DSP Software Engineer</b></h4>
+                    <div class="col-8">
+                      <h3 id="h31" align="left"><b>DSP Software Engineer</b></h4>
                     </div>
                     <div class="col">
-                      <h6 align="right"><em>Mar. 2022 - Present</em></h6>
+                      <h6 id="h61" align="right"><em>Mar. 2022 - Present</em></h6>
                     </div>
                   </div>
                   <div class="row align-items-center">
-                    <div class="col">
-                      <h5 align="left"><u>Mikucare</u></h6>
+                    <div class="col-8">
+                      <h5 id="h51" align="left"><u>Mikucare</u></h6>
                     </div>
                     <div class="col">
-                      <h6 align="right"><em>Woodbridge, NJ</em></h6>
+                      <h6 id="h62" align="right"><em>Woodbridge, NJ</em></h6>
                     </div>
                   </div>
                   <hr>
-                  <div class="container-fluid overflow-auto" style="height: 50%;">
+                  <div id="miku_exp" class="container-fluid overflow-auto m-3" style="height: 250px;">
                     <p align="justify">Member of a team of engineers responsible for developing high throughput and low latency C++17 code for a smart baby monitor.</p>
                     <p align="justify">Leading the development of new algorithm features utilizing sensor fusion and computer vision techniques to identify the sleep, respiration, and movement patterns of over 30,000 infants in a fast-paced startup environment.</p>
                     <p align="justify">Designed a multi-threaded and highly-scalable analysis model that processed over a terabyte of customer data to verify algorithm performance and evaluate the statistics of the radar and camera sensors for the development of new features.</p>
@@ -70,50 +75,50 @@
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 500px;">
+                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="top:10%; bottom: 10%;">
                   <div class="row align-items-center">
-                    <div class="col">
-                      <h3 align="left"><b>Software Engineer</b></h4>
+                    <div class="col-8">
+                      <h3 id="h32" align="left"><b>Software Engineer</b></h4>
                     </div>
                     <div class="col">
-                      <h6 align="right"><em>Nov. 2019 - Mar. 2022</em></h6>
+                      <h6 id="h63" align="right"><em>Nov. 2019 - Mar. 2022</em></h6>
                     </div>
                   </div>
                   <div class="row align-items-center">
-                    <div class="col">
-                      <h5 align="left"><u>Peraton Labs</u></h6>
+                    <div class="col-8">
+                      <h5 id="h52" align="left"><u>Peraton Labs</u></h6>
                     </div>
                     <div class="col">
-                      <h6 align="right"><em>Picatinny Arsenal, NJ</em></h6>
+                      <h6 id="h64" align="right"><em>Picatinny Arsenal, NJ</em></h6>
                     </div>
                   </div>
                   <hr>
-                  <div class="container-fluid overflow-auto" style="height: 50%;">
+                  <div id="peraton_exp" class="container-fluid overflow-auto m-3" style="height: 250px;">
                     <p align="justify">Member of an Agile team of engineers responsible for developing and maintaining the real-time object tracking and trajectory estimation software for a Counter-Unmanned-Aircraft-System (C-UAS) program at the US Army CCDC-AC: Weapons and Software Engineering Center in C++17.</p>
                     <p align="justify">Collaborated with large teams composed of industry experts to deliver high-performance and high-throughput software running on a custom Linux kernel, which interacts with several other systems and a proprietary weapons platform.</p>
                   </div>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden"  style="height: 500px;">
+                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="top:10%; bottom: 10%;">
                   <div class="row align-items-center">
-                    <div class="col">
-                      <h3 align="left"><b>Firmware Engineer</b></h4>
+                    <div class="col-8">
+                      <h3 id="h33" align="left"><b>Firmware Engineer</b></h4>
                     </div>
-                    <div class="col">
+                    <div id="h65" class="col">
                       <h6 align="right"><em>Jan. 2018 - Nov. 2019</em></h6>
                     </div>
                   </div>
                   <div class="row align-items-center">
-                    <div class="col">
-                      <h5 align="left"><u>Crestron Electronics</u></h6>
+                    <div class="col-8">
+                      <h5 id="h53" align="left"><u>Crestron Electronics</u></h6>
                     </div>
                     <div class="col">
-                      <h6 align="right"><em>Rockleigh, NJ</em></h6>
+                      <h6 id="h66" align="right"><em>Rockleigh, NJ</em></h6>
                     </div>
                   </div>
                   <hr>
-                  <div class="container-fluid overflow-auto" style="height: 50%;">
+                  <div id="crestron_exp" class="container-fluid overflow-auto m-3" style="height: 250px;">
                     <p align="justify">Wrote and interacted with bare-metal and Real-Time-Operating-System (RTOS) C firmware, specifically relating to audio processing algorithms like line/acoustic echo cancellation, delay-and-sum beamformers, and fixed/adaptive filter design.</p>
                     <p align="justify">Modeled algorithms and product design feasibility in MATLAB, and participated in the full cycle of product development for the UC-SB1-CAM soundbar, one of Crestron's best-selling products.</p>
                   </div>
@@ -135,80 +140,88 @@
           <hr>
           <div class="row">
             <div class="col">
-              <h4 align="left">Georgia Institute of Technology</h4>
-              <h6 align="left"><em>&emsp;M.S. in Electrical and Computer Engineering</em></h6>
-              <h6 align="left"><em>&emsp;Concentration in Digital Signal Processing (DSP)</em></h6>
+              <h4 id="h41" align="left">Georgia Institute of Technology</h4>
+              <h6 id="h67" align="left"><em>&emsp;M.S. in Electrical and Computer Engineering</em></h6>
+              <h6 id="h68" align="left"><em>&emsp;Concentration in Digital Signal Processing (DSP)</em></h6>
             </div>
             <div class="col">
-              <h6 align="right"><u>2016 - 2017</u></h6>
+              <h6 id="h69" align="right"><u>2016 - 2017</u></h6>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <h4 align="left">Manhattan College</h4>
-              <h6 align="left"><em>&emsp;B.S. in Computer Engineering</em></h6>
-              <h6 align="left"><em>&emsp;Minor in Mathematics</em></h6>
+              <h4 id="h42" align="left">Manhattan College</h4>
+              <h6 id="h610" align="left"><em>&emsp;B.S. in Computer Engineering</em></h6>
+              <h6 id="h611" align="left"><em>&emsp;Minor in Mathematics</em></h6>
             </div>
             <div class="col">
-              <h6 align="right"><u>2012 - 2016</u></h6>
+              <h6 id="h612" align="right"><u>2012 - 2016</u></h6>
             </div>
           </div>
           <hr>
-          <h4 align="left">Relevant Projects & Papers:</h5>
-          <div id="carouselEducation" class="carousel slide">
+          <h4 id="h43" align="left">Relevant Projects & Papers:</h5>
+          <div id="carouselEducation" class="carousel slide carousel-dark">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselEducation" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselEducation" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselEducation" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselEducation" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselEducation" data-bs-slide-to="4" aria-label="Slide 5"></button>
+              <button type="button" data-bs-target="#carouselEducation" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            </div> 
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
-                  <h6 align="left"><u>Heteronymous Ambiguity Resolution</u></h6>
-                  <div class="container-fluid overflow-auto m-1" style="height: 50%;">
+                <div id="paper1_cont" class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
+                  <h6 id="h613" align="left"><u>Heteronymous Ambiguity Resolution</u></h6>
+                  <div id="paper1" class="container-fluid overflow-auto m-1" style="height: 50%;">
                     <p align="justify">This project used a combination of an N-Gram tagger, a Bayesian classifier, and a decision tree to determine the correct pronunciation of heteronyms (words that are spelled the same but pronounced differently, i.e. "lead") for text-to-speech implementations.</p>
+                    <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Heteronymous-Ambiguity-Resolution" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
                   </div>
-                  <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Heteronymous-Ambiguity-Resolution" role="button"><i class="bi bi-github"></i><br>Link</a>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
-                  <h6 align="left"><u>Identity Detection via Handwriting Analysis</u></h6>
-                  <div class="container-fluid overflow-auto m-1" style="height: 50%;">
+                <div id="paper2_cont" class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
+                  <h6 id="h614" align="left"><u>Identity Detection via Handwriting Analysis</u></h6>
+                  <div id="paper2" class="container-fluid overflow-auto m-1" style="height: 50%;">
                     <p align="justify">This project used the Discrete Curvelet Transform to extract statistical features from handwritten characters in order to establish the identity of the writer. A profile was constructed for each user, and samples of their handwriting were analyzed. New writing samples could then be analyzed and have their statistical features compared to the character of each user profile.</p>
+                    <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Identity-Detection-via-Handwriting-Analysis" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
                   </div>
-                  <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Identity-Detection-via-Handwriting-Analysis" role="button"><i class="bi bi-github"></i><br>Link</a>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
-                  <h6 align="left"><u>EEG Beamforming</u></h6>
-                  <div class="container-fluid overflow-auto m-1" style="height: 50%;">
+                <div id="paper3_cont" class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
+                  <h6 id="h615" align="left"><u>EEG Beamforming</u></h6>
+                  <div id="paper3" class="container-fluid overflow-auto m-1" style="height: 50%;">
                     <p align="justify">The focus of this project was to determine how beamforming algorithms and techniques can be applied to electroencephalographic measurements to optimize source detection and resolve sources with a high spatial correlation. Applying beamforming to EEG's can provide a significantly higher amount of spatial resolution than standard dipole modeling, and as a result can provide more accurate measurements and produce more meaningful data.</p>
+                    <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/EEG-Beamforming" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
                   </div>
-                  <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/EEG-Beamforming" role="button"><i class="bi bi-github"></i><br>Link</a>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
-                  <h6 align="left"><u>Phased Vocoder</u></h6>
-                  <div class="container-fluid overflow-auto m-1" style="height: 50%;">
+                <div id="paper4_cont" class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
+                  <h6 id="h616" align="left"><u>Phased Vocoder</u></h6>
+                  <div id="paper4" class="container-fluid overflow-auto m-1" style="height: 50%;">
                     <p align="justify">The purpose of this project was to design a phase vocoder capable of pitch-shifting without time-stretching, time-stretching without pitch-shifting, and pitch-shifting while time-stretching speech signals.</p>
+                    <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Phased-Vocoder" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
                   </div>
-                  <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Phased-Vocoder" role="button"><i class="bi bi-github"></i><br>Link</a>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
-                  <h6 align="left"><u>Optimizing Brain Tumor Images</u></h6>
-                  <div class="container-fluid overflow-auto m-1" style="height: 50%;">
+                <div id="paper5_cont" class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
+                  <h6 id="h617" align="left"><u>Optimizing Brain Tumor Images</u></h6>
+                  <div id="paper5" class="container-fluid overflow-auto m-1" style="height: 50%;">
                     <p align="justify">Using brain tumor images acquired from an optical fluorescence microscope imaging system employing a 488 nanometer Argon laser, this project used the Otsu algorithm to highlight cancerous brain tissue segments, facilitating faster and more accurate diagnoses of brain cancer while providing a surgeon with more accurate images to reduce the possibility of healthy tissue removal during brain cancer operations.</p>
+                    <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Optimizing-Brain-Tumor-Images" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
                   </div>
-                  <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Optimizing-Brain-Tumor-Images" role="button"><i class="bi bi-github"></i><br>Link</a>
                 </div>
               </div>
               <div class="carousel-item">
-                <div class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
-                  <h6 align="left"><u>Free Space Optical Data Transmission</u></h6>
-                  <div class="container-fluid overflow-auto m-1" style="height: 50%;">
+                <div id="paper6_cont" class="container-fluid py-3 px-3 text-center rounded-4 overflow-hidden" style="height: 200px;">
+                  <h6 id="h618" align="left"><u>Free Space Optical Data Transmission</u></h6>
+                  <div id="paper6" class="container-fluid overflow-auto m-1" style="height: 50%;">
                     <p align="justify">NASA's USIP (Undergraduate Student Instrument Project) SFRO (Student Flight Research Opportunity) Program: this project focused on the design of a small CubeSat satellite that would be launched into orbit around Earth. My team and I would then send signals via an 852 nanometer laser to test the feasibility of replacing radio frequency communications between satellites with free-space optical data transmission using high-intensity lasers. Unfortunately the project did not receive funding.</p>
+                    <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Free-Space-Optical-Data-Transmission" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
                   </div>
-                  <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/Free-Space-Optical-Data-Transmission" role="button"><i class="bi bi-github"></i><br>Link</a>
                 </div>
               </div>
             </div>
@@ -250,7 +263,7 @@
           <h2><i class="bi bi-award-fill" style="font-size:1em"></i> Patents</h2>
           <hr>
           <h5 align="left">Adaptive Beamforming Microphone Metadata Transmission to Coordinate Acoustic Echo Cancellation in an Audio Conferencing System</h5>
-          <a href="https://patents.google.com/patent/US10854216B2/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><p align="left">US Patent: US10854216B2</p></a>
+          <a href="https://patents.google.com/patent/US10854216B2/" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" target="_blank"><p align="left">US Patent: US10854216B2</p></a>
           <hr>
         </div>
         <div id="misc_deetz" class="container-fluid py-3 px-3 shadow-lg text-center rounded-4 animate__animated animate__fadeIn animate__delay-1s" style="position: absolute; width: 20%; top: 10%; left: 17.5%; display: table-cell;">
@@ -273,7 +286,7 @@
             <div class="col">
               <p align="justify">The Enhanced Super-Resolution Generative Adversarial Network, or ESRGAN, is an improvement of standard Super-Resolution Generative Adversarial Networks (SRGAN) via introduction of the Residual-in-Residual Dense Block (RRDB). Essentially, the model takes an image and upscales it by a factor of 4. The results are much cleaner than when compared to traditional methods of upscaling images.</p>
               <p align="justify">The ESRGAN model was trained using images of size 128x128, so in order to upscale larger images, I divide the image into 128x128 tiles and process those with the model, and then reassemble into the larger image. You can view the project's GitHub page here:</p>
-              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/tfhub-esrgan-wrapper" role="button"><i class="bi bi-github"></i><br>Link</a>
+              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/tfhub-esrgan-wrapper" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
             </div>
             <div class="col">
               <img src="esrgan_banner.jpg" class="img-fluid" alt="">
@@ -373,9 +386,9 @@
           <br>
           <hr>
           <h4><u>References</u></h4>
-          <a class="link-dark" href="https://arxiv.org/pdf/1809.00219.pdf"><p align="left">Xintao Wang, Ke Yu, Shixiang Wu, Jinjin Gu, Yihao Liu, Chao Dong, Chen Change Loy, Yu Qiao, Xiaoou Tang. ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks. To appear in ECCV, 2018.</p></a>
-          <a class="link-dark" href="https://arxiv.org/abs/1609.04802"><p align="left">Christian Ledig, Lucas Theis, Ferenc Huszar, Jose Caballero, Andrew Cunningham, Alejandro Acosta, Andrew Aitken, Alykhan Tejani, Johannes Totz, Zehan Wang, Wenzhe Shi. Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network. In CVPR, 2017.</p></a>
-          <a class="link-dark" href="https://www.tensorflow.org/hub/tutorials/image_enhancing"><p align="left">https://www.tensorflow.org/hub/tutorials/image_enhancing</p></a>
+          <a class="link-dark" href="https://arxiv.org/pdf/1809.00219.pdf" target="_blank"><p align="left">Xintao Wang, Ke Yu, Shixiang Wu, Jinjin Gu, Yihao Liu, Chao Dong, Chen Change Loy, Yu Qiao, Xiaoou Tang. ESRGAN: Enhanced Super-Resolution Generative Adversarial Networks. To appear in ECCV, 2018.</p></a>
+          <a class="link-dark" href="https://arxiv.org/abs/1609.04802" target="_blank"><p align="left">Christian Ledig, Lucas Theis, Ferenc Huszar, Jose Caballero, Andrew Cunningham, Alejandro Acosta, Andrew Aitken, Alykhan Tejani, Johannes Totz, Zehan Wang, Wenzhe Shi. Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network. In CVPR, 2017.</p></a>
+          <a class="link-dark" href="https://www.tensorflow.org/hub/tutorials/image_enhancing" target="_blank"><p align="left">https://www.tensorflow.org/hub/tutorials/image_enhancing</p></a>
         </div>
         <div id="projects2_deetz" class="container-fluid py-3 px-3 shadow-lg text-center rounded-4 animate__animated animate__fadeIn animate__delay-1s overflow-auto" style="position: absolute; width: 40%; top: 10%; left: 42.5%; display: table-cell;">
           <h2>Style Transfer</h2>
@@ -384,7 +397,7 @@
             <div class="col">
               <p align="justify">Pictured to the right is the result of applying the style of an abstract painting to a picture of a cute dog.</p>
               <p align="justify">I have written a Python package you can install with pip that encapsulates the model and associated evaluation functions into a simple wrapper. You can view the Github project page with the link below:</p>
-              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/tfhub-styletransfer-wrapper" role="button"><i class="bi bi-github"></i><br>Link</a>
+              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/tfhub-styletransfer-wrapper" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
             </div>
             <div class="col">
               <img src="style_transfer_banner.jpg" class="img-fluid" alt="">
@@ -431,9 +444,9 @@
           <br>
           <hr>
           <h4><u>References</u></h4>
-          <a class="link-dark" href="https://arxiv.org/abs/1705.06830"><p align="left">Golnaz Ghiasi, Honglak Lee, Manjunath Kudlur, Vincent Dumoulin, Jonathon Shlens. Exploring the structure of a real-time, arbitrary neural artistic stylization network. Proceedings of the British Machine Vision Conference (BMVC), 2017.</p></a>
-          <a class="link-dark" href="https://arxiv.org/abs/1512.00567"><p align="left">Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, Zbigniew Wojna. Rethinking the Inception Architecture for Computer Vision. In IEEE Computer Vision and Pattern Recognition (CVPR), 2015.</p></a>
-          <a class="link-dark" href="https://arxiv.org/abs/1703.06868"><p align="left">Xun Huang, Serge Belongie. Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization. In ICCV, 2017</p></a>
+          <a class="link-dark" href="https://arxiv.org/abs/1705.06830" target="_blank"><p align="left">Golnaz Ghiasi, Honglak Lee, Manjunath Kudlur, Vincent Dumoulin, Jonathon Shlens. Exploring the structure of a real-time, arbitrary neural artistic stylization network. Proceedings of the British Machine Vision Conference (BMVC), 2017.</p></a>
+          <a class="link-dark" href="https://arxiv.org/abs/1512.00567" target="_blank"><p align="left">Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, Zbigniew Wojna. Rethinking the Inception Architecture for Computer Vision. In IEEE Computer Vision and Pattern Recognition (CVPR), 2015.</p></a>
+          <a class="link-dark" href="https://arxiv.org/abs/1703.06868" target="_blank"><p align="left">Xun Huang, Serge Belongie. Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization. In ICCV, 2017</p></a>
         </div>
         <div id="projects3_deetz" class="container-fluid py-3 px-3 shadow-lg text-center rounded-4 animate__animated animate__fadeIn animate__delay-1s overflow-auto" style="position: absolute; width: 40%; top: 10%; left: 42.5%; display: table-cell;">
           <h2>DCGAN</h2>
@@ -443,7 +456,7 @@
               <p align="justify">The image to the right describes the model architecture for the generator in a Deep Convolutional Generator Adversarial Network (DCGAN). This project implements a basic DCGAN for generating pictures of faces at a 64x64 resolution.</p>
               <p align="justify">The project was originally started as a standalone Python project, but facing incredibly long training times on my local machine, I looked into using Google Colab notebooks as they allow access to 8 TPU's for a short period of time. Using TPU's reduced the training time by a factor of 10.</p>
               <p align="justify">Over time, the network gets better at generating faces while also getting better at determing which faces are generated and which are from the original dataset. You can view the project's GitHub page here:</p>
-              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/DCGAN-Face-Generator/blob/main/DCGAN_Face_Generator.ipynb" role="button"><i class="bi bi-github"></i><br>Link</a>
+              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/DCGAN-Face-Generator/blob/main/DCGAN_Face_Generator.ipynb" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
             </div>
             <div class="col">
               <img src="dcgan_banner.png" class="img-fluid" alt="">
@@ -601,9 +614,9 @@
           <br>
           <hr>
           <h4><u>References</u></h4>
-          <a class="link-dark" href="https://developers.google.com/machine-learning/gan/generator"><p align="left">https://developers.google.com/machine-learning/gan/generator</p></a>
-          <a class="link-dark" href="https://www.tensorflow.org/tutorials/generative/dcgan"><p align="left">https://www.tensorflow.org/tutorials/generative/dcgan</p></a>
-          <a class="link-dark" href="https://keras.io/examples/generative/dcgan_overriding_train_step/"><p align="left">https://keras.io/examples/generative/dcgan_overriding_train_step/</p></a>
+          <a class="link-dark" href="https://developers.google.com/machine-learning/gan/generator" target="_blank"><p align="left">https://developers.google.com/machine-learning/gan/generator</p></a>
+          <a class="link-dark" href="https://www.tensorflow.org/tutorials/generative/dcgan" target="_blank"><p align="left">https://www.tensorflow.org/tutorials/generative/dcgan</p></a>
+          <a class="link-dark" href="https://keras.io/examples/generative/dcgan_overriding_train_step/" target="_blank"><p align="left">https://keras.io/examples/generative/dcgan_overriding_train_step/</p></a>
         </div>
         <div id="projects4_deetz" class="container-fluid py-3 px-3 shadow-lg text-center rounded-4 animate__animated animate__fadeIn animate__delay-1s overflow-auto" style="position: absolute; width: 40%; top: 10%; left: 42.5%; display: table-cell;">
           <h2>Django Website</h2>
@@ -614,7 +627,7 @@
             <div class="col">
               <p align="justify">This project details the deployment of this website using Django. The previous version of my website had been using static HTML pages, which are easy to create and relatively simple, and integrating web applications can be done using Flask. By using Django to deploy the website, I can easy deploy my web-apps, as well as programmatically create pages.</p>
               <p align="justify">The main attraction of using Django for my personal website was less of a necessity and more of a project. As I do not have hundreds of personal projects, using a database to store the project info is unnecessary, but still a fun exercise. It does allow me to more easily deploy my web-apps, as I have found Django to be much easier to use than integrating Flask.</p>
-              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/atparisi-django" role="button"><i class="bi bi-github"></i><br>Link</a>
+              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/atparisi-django" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
             </div>
             <div class="col">
               <img src="django_banner.png" class="img-fluid" alt="">
@@ -724,7 +737,7 @@
             <div class="col">
               <p align="justify">This project details the development of a model renderer using OpenGL and GLFW.</p>
               <p align="justify">This renderer uses OpenGL version 3.3 which is very widely supported. GLAD is used to handle the locating of driver-specific functions, enabling interoperability between different systems. GLFW is used to provide easy functionality for creating an OpenGL instance, handling user input, and displaying our buffer to a window.</p>
-              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/OpenGL-Renderer" role="button"><i class="bi bi-github"></i><br>Link</a>
+              <a class="btn btn-outline-dark me-3 shadow" href="https://github.com/alex-parisi/OpenGL-Renderer" role="button" target="_blank"><i class="bi bi-github"></i><br>Link</a>
             </div>
             <div class="col">
               <img src="opengl_banner.gif" class="img-fluid" alt="">
@@ -738,7 +751,7 @@
           <img src="opengl_logo.jpg" class="img-fluid" alt="" onclick="window.open(this.src)" role="button">
           <br>
           <br>
-          <p align="justify">This renderer uses <a class="link-dark" href="https://registry.khronos.org/OpenGL/specs/gl/glspec33.core.pdf">OpenGL</a> version 3.3 which is very widely supported. <a class="link-dark" href="https://github.com/Dav1dde/glad">GLAD</a> is used to handle the locating of driver-specific functions, enabling interoperability between different systems. <a class="link-dark" href="https://www.glfw.org/">GLFW</a> is used to provide easy functionality for creating an OpenGL instance, handling user input, and displaying our buffer to a window.</p>
+          <p align="justify">This renderer uses <a class="link-dark" href="https://registry.khronos.org/OpenGL/specs/gl/glspec33.core.pdf" target="_blank">OpenGL</a> version 3.3 which is very widely supported. <a class="link-dark" href="https://github.com/Dav1dde/glad" target="_blank">GLAD</a> is used to handle the locating of driver-specific functions, enabling interoperability between different systems. <a class="link-dark" href="https://www.glfw.org/" target="_blank">GLFW</a> is used to provide easy functionality for creating an OpenGL instance, handling user input, and displaying our buffer to a window.</p>
           <br>
           <hr>
           <h4><u>Features</u></h4>
@@ -770,24 +783,24 @@
           <img src="assimp.png" class="img-fluid" alt="" onclick="window.open(this.src)" role="button">
           <br>
           <br>
-          <p align="justify">Model loading is performed used <a class="link-dark" href="http://assimp.org/">Assimp</a>, which allows for the importing of models in a multitude of formats.</p>
+          <p align="justify">Model loading is performed used <a class="link-dark" href="http://assimp.org/" target="_blank">Assimp</a>, which allows for the importing of models in a multitude of formats.</p>
           <br>
           <hr>
           <h4><u>References</u></h4>
-          <a class="link-dark" href="https://learnopengl.com/"><p align="left">https://learnopengl.com/</p></a>
+          <a class="link-dark" href="https://learnopengl.com/" target="_blank"><p align="left">https://learnopengl.com/</p></a>
         </div>
       </div>
 
       <div id="the_linkz" class="container-fluid py-3 px-3 shadow-lg text-center rounded-4 animate__animated animate__fadeIn" style="position: absolute; width: 30%; bottom: 5%; left: 35%;">
         <div class="row py-3">
           <div class="col">
-            <a id="resume_button" class="btn btn-outline-dark shadow animate__animated animate__fadeIn" style="animation-delay:1000ms" href="resume.pdf" role="button"><i class="bi bi-download"></i><br>Resume</a>
+            <a id="resume_button" class="btn btn-outline-dark shadow animate__animated animate__fadeIn" style="animation-delay:1000ms" href="resume.pdf" role="button" target="_blank"><i class="bi bi-download"></i><br>Resume</a>
           </div>
           <div class="col">
-            <a id="linkedin_button" class="btn btn-outline-dark shadow animate__animated animate__fadeIn" style="animation-delay:1250ms" href="https://www.linkedin.com/in/alextparisi/" role="button"><i class="bi bi-linkedin"></i><br>LinkedIn</a>
+            <a id="linkedin_button" class="btn btn-outline-dark shadow animate__animated animate__fadeIn" style="animation-delay:1250ms" href="https://www.linkedin.com/in/alextparisi/" role="button" target="_blank"><i class="bi bi-linkedin"></i><br>LinkedIn</a>
           </div>
           <div class="col">
-            <a id="github_button" class="btn btn-outline-dark shadow animate__animated animate__fadeIn" style="animation-delay:1500ms" href="https://github.com/alex-parisi" role="button"><i class="bi bi-github"></i><br>GitHub</a>
+            <a id="github_button" class="btn btn-outline-dark shadow animate__animated animate__fadeIn" style="animation-delay:1500ms" href="https://github.com/alex-parisi" role="button" target="_blank"><i class="bi bi-github"></i><br>GitHub</a>
           </div>
           <div class="col">
             <a id="email_button" class="btn btn-outline-dark shadow animate__animated animate__fadeIn" style="animation-delay:1750ms" href="mailto:alex@atparisi.com" role="button"><i class="bi bi-envelope"></i><br>Email</a>
