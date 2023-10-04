@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+canvas {
+display: block;
+position: relative;
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+   }
+   
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next,
+.carousel-control-prev  {
+    bottom: -60% !important;
+}
+
+.slidecontainer {
+    width: 100%;
+  }
+  
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 75%;
+    background: rgb(255, 255, 255);
+    outline: none;
+    opacity: 0.2;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10%;
+    height: 75%;
+    background: #6499e9;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 10%;
+    height: 75%;
+    background: #6499e9;
+    cursor: pointer;
+}
