@@ -6,51 +6,60 @@ uniform vec2 iMouse;
 uniform float iTime;
 uniform float timeScaling;
 
-vec4 colormap(float x) {
-  return vec4((100.0 / 255.0), (153.0 / 255.0), (233.0 / 255.0), 1.0);
+// Define the base-color, a lovely shade of blue
+vec4 color = vec4((100.0 / 255.0), (153.0 / 255.0), (233.0 / 255.0), 1.0);
+
+// Function to generate random numbers, based on:
+// http://web.archive.org/web/20080211204527/http://lumina.sourceforge.net/Tutorials/Noise.html
+float rand(vec2 uv) { 
+  return fract(sin(dot(uv.xy ,vec2(12.9898, 78.233))) * 43758.5453);
 }
 
-float rand(vec2 n) { 
-  return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+// Fractal Brownian Motion implementation, similar to:
+// https://godotshaders.com/snippet/fractal-brownian-motion-fbm/
+// Function to generate noise using rand()
+float noise(vec2 uv){
+  vec2 uv_index = floor(uv);
+  vec2 uv_fract = fract(uv);
+
+  // Grab the corners of the "tile" to be displayed
+  float a = rand(uv_index);
+  float b = rand(uv_index + vec2(1.0, 0.0));
+  float c = rand(uv_index + vec2(0.0, 1.0));
+  float d = rand(uv_index + vec2(1.0, 1.0));
+
+  vec2 blur = smoothstep(0.0, 1.0, uv_fract);
+
+  return mix(a, b, blur.x) + (c - a) * blur.y * (1.0 - blur.x) + (d - b) * blur.x * blur.y;
 }
 
-float noise(vec2 p){
-  vec2 ip = floor(p);
-  vec2 u = fract(p);
-  u = u*u*(3.0-2.0*u);
-
-  float res = mix(
-      mix(rand(ip),rand(ip+vec2(1.0,0.0)),u.x),
-      mix(rand(ip+vec2(0.0,1.0)),rand(ip+vec2(1.0,1.0)),u.x),u.y);
-  return res*res;
-}
-
-const mat2 mtx = mat2( 0.80,  0.60, -0.60,  0.80 );
-
+// Brownian Motion
 float fbm( vec2 p )
 {
-  float f = 0.0;
+  float amplitude = 0.5;
+  float frequency = 2.0;
+  float value = 0.0;
 
-  f += 0.500000*noise( p + iTime  ); p = mtx*p*2.02;
-  f += 0.031250*noise( p ); p = mtx*p*2.01;
-  f += 0.250000*noise( p ); p = mtx*p*2.03;
-  f += 0.125000*noise( p ); p = mtx*p*2.01;
-  f += 0.062500*noise( p ); p = mtx*p*2.04;
-  f += 0.015625*noise( p + sin(iTime) );
-
-  return f/.96875;
+  for(int i = 0; i < 6; i++) {
+    value += amplitude * noise(frequency * p + iTime);
+    amplitude *= 0.5;
+    frequency *= 2.0;
+  }
+  return value;
 }
 
+// The "fractal" part
 float pattern( in vec2 p )
 {
-  return fbm( p * 0.5 + fbm( p + fbm( p ) ) ) * 2.5;
+  return fbm( p + fbm( p + fbm( p ) ) ) * 1.5;
 }
 
+// Generate Fractal Brownian Motion:
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
   vec2 uv = fragCoord/iResolution.x;
   float shade = pattern(uv);
-  fragColor = vec4(colormap(shade).rgb, clamp(shade, 0.75, 1.0));
+  fragColor = vec4(color.rgb, clamp(shade, 0.75, 1.0));
 }
 
 void main() {
