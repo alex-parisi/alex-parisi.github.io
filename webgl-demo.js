@@ -241,6 +241,8 @@ function main() {
 	if (!gl) {
 		return;
 	}
+	canvas.width = document.body.clientWidth;
+	canvas.height = document.body.clientHeight;
 	
 	// Setup some HTML stuff
 	const biz = document.getElementById("the_biz");
@@ -252,12 +254,67 @@ function main() {
 	const patents_deetz = document.getElementById("patents_deetz");
 	const misc_deetz = document.getElementById("misc_deetz");
 
+	const projects0_deetz = document.getElementById("projects0_deetz");
+	const projects1_deetz = document.getElementById("projects1_deetz");
+	const projects2_deetz = document.getElementById("projects2_deetz");
+	const projects3_deetz = document.getElementById("projects3_deetz");
+	const projects4_deetz = document.getElementById("projects4_deetz");
+	const projects5_deetz = document.getElementById("projects5_deetz");
+
+	const exp_btn = document.getElementById("experience_button");
+	const edu_btn = document.getElementById("education_button");
+	const pro_btn = document.getElementById("projects_button");
+	const ski_btn = document.getElementById("skills_button");
+	const pat_btn = document.getElementById("patents_button");
+	const msc_btn = document.getElementById("misc_button");
+
+	const pro_mm_btn = document.getElementById("projectsMainMenu_button");
+	const msc_mm_btn = document.getElementById("miscMainMenu_button");
+
+	const pro1_btn = document.getElementById("projectDeetz1_button");
+	const pro2_btn = document.getElementById("projectDeetz2_button");
+	const pro3_btn = document.getElementById("projectDeetz3_button");
+	const pro4_btn = document.getElementById("projectDeetz4_button");
+	const pro5_btn = document.getElementById("projectDeetz5_button");
+
+	const resume_btn = document.getElementById("resume_button");
+	const linkedin_btn = document.getElementById("linkedin_button");
+	const github_btn = document.getElementById("github_button");
+	const email_btn = document.getElementById("email_button");
+
+	exp_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+	edu_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+	pro_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+	ski_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+	pat_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+	msc_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+
+	pro_mm_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) + "em";
+	msc_mm_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) + "em";
+
+	pro1_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	pro2_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	pro3_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	pro4_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	pro5_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+
+	resume_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	linkedin_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	github_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	email_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+
 	experience_deetz.style.height = biz.clientHeight.toString().concat("px");
 	education_deetz.style.height = biz.clientHeight.toString().concat("px");
-	projects_deetz.style.height = biz.clientHeight.toString().concat("px");
 	skills_deetz.style.height = biz.clientHeight.toString().concat("px");
 	patents_deetz.style.height = biz.clientHeight.toString().concat("px");
 	misc_deetz.style.height = biz.clientHeight.toString().concat("px");
+
+	projects0_deetz.style.height = biz.clientHeight.toString().concat("px");
+	projects1_deetz.style.height = biz.clientHeight.toString().concat("px");
+	projects2_deetz.style.height = biz.clientHeight.toString().concat("px");
+	projects3_deetz.style.height = biz.clientHeight.toString().concat("px");
+	projects4_deetz.style.height = biz.clientHeight.toString().concat("px");
+	projects5_deetz.style.height = biz.clientHeight.toString().concat("px");
 	
 	experience_deetz.hidden = true;
 	education_deetz.hidden = true;
@@ -266,20 +323,6 @@ function main() {
 	patents_deetz.hidden = true;
 	misc_deetz.hidden = true;
 
-	const projects0_deetz = document.getElementById("projects0_deetz");
-	const projects1_deetz = document.getElementById("projects1_deetz");
-	const projects2_deetz = document.getElementById("projects2_deetz");
-	const projects3_deetz = document.getElementById("projects3_deetz");
-	const projects4_deetz = document.getElementById("projects4_deetz");
-	const projects5_deetz = document.getElementById("projects5_deetz");
-
-	projects0_deetz.style.height = biz.clientHeight.toString().concat("px");
-	projects1_deetz.style.height = biz.clientHeight.toString().concat("px");
-	projects2_deetz.style.height = biz.clientHeight.toString().concat("px");
-	projects3_deetz.style.height = biz.clientHeight.toString().concat("px");
-	projects4_deetz.style.height = biz.clientHeight.toString().concat("px");
-	projects5_deetz.style.height = biz.clientHeight.toString().concat("px");
-
 	projects0_deetz.hidden = true;
 	projects1_deetz.hidden = true;
 	projects2_deetz.hidden = true;
@@ -287,29 +330,15 @@ function main() {
 	projects4_deetz.hidden = true;
 	projects5_deetz.hidden = true;
 
-	const exp_btn = document.getElementById("experience_button");
-	const edu_btn = document.getElementById("education_button");
-	const pro_btn = document.getElementById("projects_button");
-	const ski_btn = document.getElementById("skills_button");
-	const pat_btn = document.getElementById("patents_button");
-	const msc_btn = document.getElementById("misc_button");
-	const pro_mm_btn = document.getElementById("projectsMainMenu_button");
-	const msc_mm_btn = document.getElementById("miscMainMenu_button");
-
 	exp_btn.addEventListener('animationend', addButtonHandler);
 	edu_btn.addEventListener('animationend', addButtonHandler);
 	pro_btn.addEventListener('animationend', addButtonHandler);
 	ski_btn.addEventListener('animationend', addButtonHandler);
 	pat_btn.addEventListener('animationend', addButtonHandler);
 	msc_btn.addEventListener('animationend', addButtonHandler);
+
 	pro_mm_btn.addEventListener('animationend', addButtonHandler);
 	msc_mm_btn.addEventListener('animationend', addButtonHandler);
-
-	const pro1_btn = document.getElementById("projectDeetz1_button");
-	const pro2_btn = document.getElementById("projectDeetz2_button");
-	const pro3_btn = document.getElementById("projectDeetz3_button");
-	const pro4_btn = document.getElementById("projectDeetz4_button");
-	const pro5_btn = document.getElementById("projectDeetz5_button");
 
 	pro1_btn.addEventListener('animationend', addButtonHandler);
 	pro2_btn.addEventListener('animationend', addButtonHandler);
@@ -361,13 +390,55 @@ function main() {
 		}
 	}
 
-	// Create a function to mess with the noise speed:
-	// inputElem.addEventListener('click', speedUp);
-
 	// Set this function to be called on load and when the window is resized
-	window.onload = window.onresize = function () {
+	window.onresize = function () {
 		canvas.width = document.body.clientWidth;
 		canvas.height = document.body.clientHeight;
+
+		exp_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+		edu_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+		pro_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+		ski_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+		pat_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+		msc_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
+
+		pro_mm_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) + "em";
+		msc_mm_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) + "em";
+
+		pro1_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		pro2_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		pro3_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		pro4_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		pro5_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+
+		resume_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		linkedin_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		github_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		email_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+
+		if (activeDeetz != "")
+		{
+			experience_deetz.style.height = biz.clientHeight.toString().concat("px");
+			education_deetz.style.height = biz.clientHeight.toString().concat("px");
+			skills_deetz.style.height = biz.clientHeight.toString().concat("px");
+			patents_deetz.style.height = biz.clientHeight.toString().concat("px");
+			misc_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects0_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects1_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects2_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects3_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects4_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects5_deetz.style.height = biz.clientHeight.toString().concat("px");
+		}
+		else
+		{
+			projects0_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+			projects1_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+			projects2_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+			projects3_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+			projects4_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+			projects5_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+		}
 
 		requestFrame();
 	}
