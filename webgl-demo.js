@@ -293,10 +293,14 @@ function main() {
 	const h41 = document.getElementById("h41");
 	const h42 = document.getElementById("h42");
 	const h43 = document.getElementById("h43");
+	const h44 = document.getElementById("h44");
+	const h45 = document.getElementById("h45");
+	const h46 = document.getElementById("h46");
 
 	const h51 = document.getElementById("h51");
 	const h52 = document.getElementById("h52");
 	const h53 = document.getElementById("h53");
+	const h54 = document.getElementById("h54");
 
 	const h61 = document.getElementById("h61");
 	const h62 = document.getElementById("h62");
@@ -331,6 +335,11 @@ function main() {
 	const paper5_cont = document.getElementById("paper5_cont");
 	const paper6_cont = document.getElementById("paper6_cont");
 
+	const programming_skills = document.getElementById("programming_skills");
+	const software_skills = document.getElementById("software_skills");
+	const general_skills = document.getElementById("general_skills");
+	const patent_number = document.getElementById("patent_number");
+
 	exp_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
 	edu_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
 	pro_btn.style.fontSize = 1.5 * (window.innerWidth / 2048.0) * (window.innerHeight / 991.0) + "em";
@@ -359,10 +368,14 @@ function main() {
 	h41.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
 	h42.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
 	h43.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+	h44.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+	h45.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+	h46.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
 
 	h51.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
 	h52.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
 	h53.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+	h54.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
 	
 	h61.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
 	h62.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
@@ -393,6 +406,11 @@ function main() {
 	paper4.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
 	paper5.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
 	paper6.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+
+	programming_skills.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	software_skills.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	general_skills.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+	patent_number.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
 
 	experience_deetz.style.height = biz.clientHeight.toString().concat("px");
 	education_deetz.style.height = biz.clientHeight.toString().concat("px");
@@ -536,10 +554,14 @@ function main() {
 		h41.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
 		h42.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
 		h43.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+		h44.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+		h45.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
+		h46.style.fontSize = 20.0 * (window.innerHeight / 991.0) + "px";
 	
 		h51.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
 		h52.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
 		h53.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
+		h54.style.fontSize = 18.0 * (window.innerHeight / 991.0) + "px";
 		
 		h61.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
 		h62.style.fontSize = 16.0 * (window.innerHeight / 991.0) + "px";
@@ -581,6 +603,11 @@ function main() {
 		paper4_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
 		paper5_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
 		paper6_cont.style.height = 200.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
+
+		programming_skills.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		software_skills.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		general_skills.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
+		patent_number.style.fontSize = 1.0 * (window.innerHeight / 991.0) + "em";
 
 		if ((activeDeetz != "") || (!opened))
 		{
