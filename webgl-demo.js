@@ -284,6 +284,8 @@ function main() {
 	const pro3_btn = document.getElementById("projectDeetz3_button");
 	const pro4_btn = document.getElementById("projectDeetz4_button");
 	const pro5_btn = document.getElementById("projectDeetz5_button");
+	const pro6_btn = document.getElementById("projectDeetz6_button");
+	const pro7_btn = document.getElementById("projectDeetz7_button");
 
 	const resume_btn = document.getElementById("resume_button");
 	const linkedin_btn = document.getElementById("linkedin_button");
@@ -363,6 +365,8 @@ function main() {
 	pro3_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 	pro4_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 	pro5_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	pro6_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+	pro7_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 
 	resume_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 	linkedin_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
@@ -477,6 +481,8 @@ function main() {
 	pro3_btn.addEventListener('animationend', addButtonHandler);
 	pro4_btn.addEventListener('animationend', addButtonHandler);
 	pro5_btn.addEventListener('animationend', addButtonHandler);
+	pro6_btn.addEventListener('animationend', addButtonHandler);
+	pro7_btn.addEventListener('animationend', addButtonHandler);
 
 	paper1.scrollTop = 0;
 	paper2.scrollTop = 0;
@@ -553,6 +559,8 @@ function main() {
 		pro3_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 		pro4_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 		pro5_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		pro6_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
+		pro7_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 
 		resume_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
 		linkedin_btn.style.fontSize = 1.0 * (window.innerWidth / 2048.0) + "em";
