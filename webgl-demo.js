@@ -107,6 +107,8 @@ function buttonHandler(event) {
 				else if (juicyDeetz == "projects3") { jDeetz = document.getElementById("projects3_deetz"); removeAllAnimations(jDeetz); jDeetz.classList.add("animate__animated", "animate__fadeOutUp"); juicyDeetz = ""; }
 				else if (juicyDeetz == "projects4") { jDeetz = document.getElementById("projects4_deetz"); removeAllAnimations(jDeetz); jDeetz.classList.add("animate__animated", "animate__fadeOutUp"); juicyDeetz = ""; }
 				else if (juicyDeetz == "projects5") { jDeetz = document.getElementById("projects5_deetz"); removeAllAnimations(jDeetz); jDeetz.classList.add("animate__animated", "animate__fadeOutUp"); juicyDeetz = ""; }
+				else if (juicyDeetz == "projects6") { jDeetz = document.getElementById("projects6_deetz"); removeAllAnimations(jDeetz); jDeetz.classList.add("animate__animated", "animate__fadeOutUp"); juicyDeetz = ""; }
+				else if (juicyDeetz == "projects7") { jDeetz = document.getElementById("projects7_deetz"); removeAllAnimations(jDeetz); jDeetz.classList.add("animate__animated", "animate__fadeOutUp"); juicyDeetz = ""; }
 			}
 			// Fade out the projects deetz:
 			removeAllAnimations(deetz);
@@ -157,6 +159,8 @@ function buttonHandler(event) {
 			else if (juicyDeetz == "projects3") { proDeetz = document.getElementById("projects3_deetz"); }
 			else if (juicyDeetz == "projects4") { proDeetz = document.getElementById("projects4_deetz"); }
 			else if (juicyDeetz == "projects5") { proDeetz = document.getElementById("projects5_deetz"); }
+			else if (juicyDeetz == "projects6") { proDeetz = document.getElementById("projects6_deetz"); }
+			else if (juicyDeetz == "projects7") { proDeetz = document.getElementById("projects7_deetz"); }
 			removeAllAnimations(proDeetz);
 			proDeetz.classList.add("animate__animated", "animate__fadeOutUp");
 			// Fade in the new juicy deetz:
@@ -166,6 +170,8 @@ function buttonHandler(event) {
 			else if (event.currentTarget.id == "projectDeetz3_button") { deetz = document.getElementById("projects3_deetz"); juicyDeetz = "projects3"; }
 			else if (event.currentTarget.id == "projectDeetz4_button") { deetz = document.getElementById("projects4_deetz"); juicyDeetz = "projects4"; }
 			else if (event.currentTarget.id == "projectDeetz5_button") { deetz = document.getElementById("projects5_deetz"); juicyDeetz = "projects5"; }
+			else if (event.currentTarget.id == "projectDeetz6_button") { deetz = document.getElementById("projects6_deetz"); juicyDeetz = "projects6"; }
+			else if (event.currentTarget.id == "projectDeetz7_button") { deetz = document.getElementById("projects7_deetz"); juicyDeetz = "projects7"; }
 			removeAllAnimations(deetz);
 			deetz.classList.add("animate__animated", "animate__fadeInRight"); 
 			deetz.hidden = false;
@@ -260,6 +266,8 @@ function main() {
 	const projects3_deetz = document.getElementById("projects3_deetz");
 	const projects4_deetz = document.getElementById("projects4_deetz");
 	const projects5_deetz = document.getElementById("projects5_deetz");
+	const projects6_deetz = document.getElementById("projects6_deetz");
+	const projects7_deetz = document.getElementById("projects7_deetz");
 
 	const exp_btn = document.getElementById("experience_button");
 	const edu_btn = document.getElementById("education_button");
@@ -424,6 +432,8 @@ function main() {
 	projects3_deetz.style.height = biz.clientHeight.toString().concat("px");
 	projects4_deetz.style.height = biz.clientHeight.toString().concat("px");
 	projects5_deetz.style.height = biz.clientHeight.toString().concat("px");
+	projects6_deetz.style.height = biz.clientHeight.toString().concat("px");
+	projects7_deetz.style.height = biz.clientHeight.toString().concat("px");
 
 	miku_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
 	peraton_exp.style.height = 250.0 * (window.innerHeight / 991.0) * (window.innerWidth / 2048.0) + "px";
@@ -449,6 +459,8 @@ function main() {
 	projects3_deetz.hidden = true;
 	projects4_deetz.hidden = true;
 	projects5_deetz.hidden = true;
+	projects6_deetz.hidden = true;
+	projects7_deetz.hidden = true;
 
 	exp_btn.addEventListener('animationend', addButtonHandler);
 	edu_btn.addEventListener('animationend', addButtonHandler);
@@ -622,6 +634,8 @@ function main() {
 			projects3_deetz.style.height = biz.clientHeight.toString().concat("px");
 			projects4_deetz.style.height = biz.clientHeight.toString().concat("px");
 			projects5_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects6_deetz.style.height = biz.clientHeight.toString().concat("px");
+			projects7_deetz.style.height = biz.clientHeight.toString().concat("px");
 		}
 		else
 		{
@@ -631,6 +645,8 @@ function main() {
 			projects3_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
 			projects4_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
 			projects5_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+			projects6_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
+			projects7_deetz.style.height = projects_deetz.clientHeight.toString().concat("px");
 		}
 
 		requestFrame();
