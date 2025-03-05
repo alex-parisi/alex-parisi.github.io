@@ -15,6 +15,13 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
+        #glcanvas {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -260,12 +267,12 @@
                 </ul>
                 <p>To generate both directional and point shadows, a shadow map is used - the scene is rendered from the point of view of the light source, and only the depth buffer is rendered. This allows each fragment to determine whether or not it is blocked from the light source. </p>
                 <p>For directional light sources, an orthographic projection matrix is used to render the depth buffer of a scene. For point sources, a cube map is used instead. </p>
-                <p>Model loading is performed used <a href="http://assimp.org/">Assimp</a>, which allows for the importing of models in a multitude of formats. </p>
+                <p>Model loading is performed used <a href="https://assimp.org/">Assimp</a>, which allows for the importing of models in a multitude of formats. </p>
             </article>
             <article class="blog-post" id="webgl-renderer">
                 <h2 class="display-5 link-body-emphasis mb-1">WebGL Renderer</h2>
                 <hr>
-                <h3>Brownian Motion Renderer using WebGL and GLFW in C++</h3>
+                <h3>Brownian Motion Renderer using WebGL</h3>
                 <!-- <h4><a href="#">GitHub</a></h4> -->
                 <canvas id="glcanvas" width="500" height="500" class="rounded"></canvas>
                 <p>The above Brownian Motion is rendered in-browser directly using WebGL, which can utilize your GPU for better performance.</p>
@@ -283,6 +290,7 @@
                         <li><a href="#dibiff">dibiff</a></li>
                         <li><a href="#flap">flap</a></li>
                         <li><a href="#opengl-renderer">OpenGL Renderer</a></li>
+                        <li><a href="#webgl-renderer">WebGL Renderer</a></li>
                     </ul>
                 </div>
             </div>
