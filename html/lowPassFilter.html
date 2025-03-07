@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <title>Parisipedia</title>
+    <script src="../js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Alex Parisi">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js" charset="utf-8"></script>
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+
+        .reveal pre code, .hljs {
+            background-color: #C1C1C1 !important;
+        }
+        .reveal pre, .hljs {
+            box-shadow: none !important;
+        }
+
+        .bg-gray {
+            background-color: #C1C1C1 !important;
+        }
+
+        #magnitudePlot, #phasePlot {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+    <link href="../css/blog.css" rel="stylesheet">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="check2" viewBox="0 0 16 16">
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+    <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+    </symbol>
+    <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+    </symbol>
+    <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+    </symbol>
+</svg>
+<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
+            id="bd-theme"
+            type="button"
+            aria-expanded="false"
+            data-bs-toggle="dropdown"
+            aria-label="Toggle theme (auto)">
+        <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+            <use href="#circle-half"></use>
+        </svg>
+        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+        <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+                    aria-pressed="false">
+                <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#sun-fill"></use>
+                </svg>
+                Light
+                <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                </svg>
+            </button>
+        </li>
+        <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+                    aria-pressed="false">
+                <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#moon-stars-fill"></use>
+                </svg>
+                Dark
+                <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                </svg>
+            </button>
+        </li>
+        <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
+                    aria-pressed="true">
+                <svg class="bi me-2 opacity-50" width="1em" height="1em">
+                    <use href="#circle-half"></use>
+                </svg>
+                Auto
+                <svg class="bi ms-auto d-none" width="1em" height="1em">
+                    <use href="#check2"></use>
+                </svg>
+            </button>
+        </li>
+    </ul>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="aperture" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
+    </symbol>
+    <symbol id="cart" viewBox="0 0 16 16">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+    <symbol id="chevron-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+    </symbol>
+</svg>
+<div class="container">
+    <div class="nav-scroller py-1 mb-3 border-bottom">
+        <nav class="nav nav-underline justify-content-between">
+            <a class="nav-item nav-link link-body-emphasis" href="javascript:history.back()">Back</a>
+            <a class="nav-item nav-link link-body-emphasis" href="wiki.html">Wiki Home</a>
+            <a class="nav-item nav-link link-body-emphasis" href="../index.html">Main Home</a>
+        </nav>
+    </div>
+</div>
+
+<main class="container">
+    <div class="row g-5">
+        <div class="col-md-8 p-4">
+            <h1>Low Pass Filters</h1>
+            <br>
+            <h5 class="fst-italic"><a href="digitalBiquadFilter.html">Digital Biquad Filtering</a></h5>
+            <hr>
+            <h3>Brief:</h3>
+            <br>
+            <p>A second-order biquad low-pass filter attenuates frequencies above a specified cutoff while allowing lower frequencies to pass through, using a combination of two poles and two zeros to shape the frequency response. It is implemented using a difference equation with feedback and feedforward coefficients, offering precise control over gain, cutoff frequency, and resonance (Q factor).</p>
+            <div class="row g-5">
+                <div class="col-md-8 d-flex flex-column h-100 p-0 ps-5">
+                    <div id="magnitudePlot" class="flex-fill bg-gray p-0"></div>
+                    <div id="phasePlot" class="flex-fill bg-gray p-0"></div>
+                </div>
+                <div class="col-md-4 d-flex flex-column p-0">
+                    <div class="flex-fill bg-gray">
+                        <div class="row p-3">
+                            <label for="cutoffSlider" style="color: black;">Cutoff Frequency \(f_{0}\):</label>
+                            <input type="range" id="cutoffSlider" min="0" max="100" value="50" />
+                        </div>
+                        <p style="color: black;">\(f_{0}\) = <span id="cutoffValue">1000</span></p>
+                        <div class="row p-3">
+                            <label for="qSlider" style="color: black;">Q Factor \(Q\):</label>
+                            <input type="range" id="qSlider" min="0.001" max="2.0" value="0.707" step="0.001" />
+                        </div>
+                        <p style="color: black;">\(Q\) = <span id="qValue">0.707</span></p>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // Generate a frequency array logarithmically spaced between 20 Hz and 20,000 Hz
+                const startFreq = 20;
+                const endFreq = 20000;
+                const numPoints = 100; // Number of points in the frequency range
+                const frequencies = Array.from({ length: numPoints }, (_, i) =>
+                    startFreq * Math.pow(endFreq / startFreq, i / (numPoints - 1))
+                );
+
+                // Custom tick values for logarithmic x-axis
+                const customTickVals = [16, 31.25, 62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+
+                // Define the replot function that computes and updates the filter response plots
+                const replot = (fc, q) => {
+                    const fs = 48000;
+                    // Calculate filter design parameters
+                    const w0 = 2 * Math.PI * fc / fs;
+                    const alpha = Math.sin(w0) / (2 * q);
+                    const b0 = (1 - Math.cos(w0)) / 2;
+                    const b1 = 1 - Math.cos(w0);
+                    const b2 = (1 - Math.cos(w0)) / 2;
+                    const a0 = 1 + alpha;
+                    const a1 = -2 * Math.cos(w0);
+                    const a2 = 1 - alpha;
+
+                    // Arrays to store magnitude and phase values
+                    let mag = [];
+                    let phase = [];
+                    frequencies.forEach(f => {
+                        let w = 2 * Math.PI * f / fs;
+                        // Compute the complex exponentials: e^(-j*w) and e^(-j*2w)
+                        let cosW = Math.cos(w);
+                        let sinW = Math.sin(w);
+                        let cos2W = Math.cos(2 * w);
+                        let sin2W = Math.sin(2 * w);
+
+                        // Numerator: b0 + b1*e^(-j*w) + b2*e^(-j*2w)
+                        let numReal = b0 + b1 * cosW + b2 * cos2W;
+                        let numImag = -(b1 * sinW + b2 * sin2W);
+
+                        // Denominator: a0 + a1*e^(-j*w) + a2*e^(-j*2w)
+                        let denReal = a0 + a1 * cosW + a2 * cos2W;
+                        let denImag = -(a1 * sinW + a2 * sin2W);
+
+                        // Compute H = numerator/denom using complex division
+                        let denMagSq = denReal * denReal + denImag * denImag;
+                        let Hreal = (numReal * denReal - numImag * denImag) / denMagSq;
+                        let Himag = (numImag * denReal + numReal * denImag) / denMagSq;
+                        let Hmag = Math.sqrt(Hreal * Hreal + Himag * Himag);
+                        let Hphase = Math.atan2(Himag, Hreal);
+                        mag.push(20 * Math.log10(Hmag));
+                        phase.push(Hphase * (180 / Math.PI));
+                    });
+
+                    // Define traces for the magnitude and phase plots
+                    let magnitudeTrace = {
+                        x: frequencies,
+                        y: mag,
+                        mode: 'lines',
+                        type: 'scatter',
+                        name: 'Magnitude (dB)'
+                    };
+
+                    let phaseTrace = {
+                        x: frequencies,
+                        y: phase,
+                        mode: 'lines',
+                        type: 'scatter',
+                        name: 'Phase (degrees)'
+                    };
+
+                    // Layout settings for the magnitude plot
+                    let magnitudeLayout = {
+                        title: { text: 'Low Pass Filter Frequency Response' },
+                        xaxis: {
+                            title: { text: 'Frequency (Hz) (logarithmic)' },
+                            type: 'log',
+                            tickvals: customTickVals,
+                            gridcolor: 'darkgray'
+                        },
+                        yaxis: {
+                            title: { text: 'Magnitude (dB)' },
+                            range: [-80, 10],
+                            gridcolor: 'darkgray'
+                        },
+                        paper_bgcolor: 'rgba(0,0,0,0)',
+                        plot_bgcolor: 'rgba(0,0,0,0)',
+                        margin: { l: 75, r: 75, b: 75, t: 75, pad: 0 }
+                    };
+
+                    // Layout settings for the phase plot
+                    let phaseLayout = {
+                        xaxis: {
+                            title: { text: 'Frequency (Hz) (logarithmic)' },
+                            type: 'log',
+                            tickvals: customTickVals,
+                            gridcolor: 'darkgray'
+                        },
+                        yaxis: {
+                            title: { text: 'Phase (degrees)' },
+                            range: [-180, 180],
+                            gridcolor: 'darkgray'
+                        },
+                        paper_bgcolor: 'rgba(0,0,0,0)',
+                        plot_bgcolor: 'rgba(0,0,0,0)',
+                        margin: { l: 75, r: 75, b: 75, t: 0, pad: 0 }
+                    };
+
+                    // Update the plots with the new data
+                    Plotly.react('magnitudePlot', [magnitudeTrace], magnitudeLayout);
+                    Plotly.react('phasePlot', [phaseTrace], phaseLayout);
+                };
+
+                // Slider elements
+                const cutoffSlider = document.getElementById('cutoffSlider');
+                const cutoffOutput = document.getElementById('cutoffValue');
+                const qSlider = document.getElementById('qSlider');
+                const qOutput = document.getElementById('qValue');
+
+                // Define the logarithmic conversion parameters for the cutoff slider
+                const minValue = 60;
+                const maxValue = 16000;
+                const minPos = 0;
+                const maxPos = 100;
+                function sliderToLog(value) {
+                    const minLog = Math.log(minValue);
+                    const maxLog = Math.log(maxValue);
+                    const scale = (maxLog - minLog) / (maxPos - minPos);
+                    return Math.exp(minLog + scale * (value - minPos));
+                }
+
+                // Update the cutoff frequency display and replot when the cutoff slider changes
+                cutoffSlider.addEventListener('input', function() {
+                    const fc = sliderToLog(cutoffSlider.value);
+                    cutoffOutput.textContent = fc.toFixed(2);
+                    const q = parseFloat(qSlider.value);
+                    replot(fc, q);
+                });
+
+                // Update the Q value display and replot when the Q slider changes
+                qSlider.addEventListener('input', function() {
+                    const q = parseFloat(qSlider.value);
+                    qOutput.textContent = q;
+                    const fc = sliderToLog(cutoffSlider.value);
+                    replot(fc, q);
+                });
+
+                // Initial call to replot using the starting slider values
+                const initialFc = sliderToLog(cutoffSlider.value);
+                const initialQ = parseFloat(qSlider.value);
+                replot(initialFc, initialQ);
+
+                // Resize the plots when the window is resized
+                window.addEventListener('resize', () => {
+                    Plotly.Plots.resize(document.getElementById('magnitudePlot'));
+                    Plotly.Plots.resize(document.getElementById('phasePlot'));
+                });
+            </script>
+            <hr>
+            <h3>Formulae:</h3>
+            <br>
+            <p>In order to construct a biquad low-pass filter, the <code>sample rate</code>, <code>cutoff frequency</code>, and <code>Q-factor</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
+            <p>First, some intermediate values are calculated:</p>
+            <ul>
+                <li>\(ω_{0} = 2π{f_{0} \over F_{s}}\)</li>
+                <li>\(α = {sin(ω_{0}) \over {2Q}}\)</li>
+            </ul>
+            <p>Where \(f_{0}\) is the cutoff frequency, \(F_{s}\) is the sample rate, and \(Q\) is the Q-factor.</p>
+            <p>Then, the filter coefficients can be calculated:</p>
+            <ul>
+                <li>\(b_{0} = {{1 - cos(ω_{0})}\over{2}}\)</li>
+                <li>\(b_{1} = 1 - cos(ω_{0})\)</li>
+                <li>\(b_{2} = {{1 - cos(ω_{0})}\over{2}}\)</li>
+                <li>\(a_{0} = 1 + α\)</li>
+                <li>\(a_{1} = -2cos(ω_{0})\)</li>
+                <li>\(a_{2} = 1 - α\)</li>
+            </ul>
+            <hr>
+            <h3>C++ Implementation:</h3>
+            <br>
+            <p>Requires: <a href="digitalBiquadFilter.html">DigitalBiquadFilter.h</a></p>
+            <pre><code>/// LowPassFilter.h
+
+/**
+Copyright © 2025 Alex Parisi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+#ifndef LOW_PASS_FILTER_H
+#define LOW_PASS_FILTER_H
+
+#include "DigitalBiquadFilter.h"
+
+/**
+ * @brief Low Pass Filter
+ * @details A low pass filter is a filter that passes signals with a
+ * frequency lower than a certain cutoff frequency and attenuates signals
+ * with frequencies higher than the cutoff frequency.
+ * @param cutoff The cutoff frequency of the filter
+ * @param sampleRate The sample rate of the input signal
+ * @param qFactor The quality factor of the filter, default value is
+ * 0.7071067811865476, or 1/sqrt(2)
+ * @return A low pass filter object
+ * @see DigitalBiquadFilter
+ */
+template&lt;std::floating_point T, size_t blockSize = 0&gt;
+class LowPassFilter {
+public:
+    static auto create(double cutoff, int sampleRate,
+                       double qFactor = 0.7071067811865476)
+            -&gt; std::optional&lt;LowPassFilter&gt; {
+        if (sampleRate &lt;= 0) {
+            LOG_E("LowPassFilter", "Error creating LowPassFilter object: "
+                                   "sample rate must be greater than zero.");
+            return std::nullopt;
+        }
+        if (cutoff &gt; sampleRate / 2.0) {
+            LOG_E("LowPassFilter",
+                  "Error creating LowPassFilter object: cutoff frequency must "
+                  "be less than half the sample rate (Nyquist frequency).");
+            return std::nullopt;
+        }
+        if (auto obj = LowPassFilter(cutoff, sampleRate, qFactor);
+            !obj.m_filter.has_value()) {
+            LOG_E("LowPassFilter",
+                  "Error creating LowPassFilter object: DigitalBiquadFilter "
+                  "object could not be created.");
+            return std::nullopt;
+        }
+        return LowPassFilter(cutoff, sampleRate, qFactor);
+    }
+    /**
+     * @brief Process a sample
+     * @details Processes a single sample of audio data
+     * @param sample The input sample
+     */
+    auto process(const T &sample) -&gt; float { return m_filter-&gt;process(sample); }
+    /**
+     * @brief Process a block of samples
+     * @details Processes a block of samples of audio data
+     * @param samples A pointer to the block of samples. The samples are edited
+     * in-place. This assumes that the pointer has enough memory allocated to
+     * pull out blockSize samples and is inherently unsafe. For block,
+     * processing, it's safer to use the block process methods with either a
+     * std::vector or std::array.
+     */
+    auto process(T *samples) -&gt; void {
+        if (blockSize &lt;= 0 || samples == nullptr) {
+            LOG_E("LowPassFilter",
+                  "Error processing block of samples: blockSize must be "
+                  "greater than zero and samples pointer cannot be null");
+            return;
+        }
+        m_filter-&gt;process(samples);
+    }
+    /**
+     * @brief Process a block of samples
+     * @details Processes a block of samples of audio data. Since this method
+     * uses a std::vector as input, we don't need to rely on blockSize being
+     * passed in.
+     * @param samples A vector of samples
+     * @return A vector of processed samples
+     */
+    auto process(std::vector&lt;double&gt; &samples) -&gt; void {
+        if (samples.empty()) {
+            LOG_E("LowPassFilter",
+                  "Error processing block of samples: samples vector is empty");
+            return;
+        }
+        m_filter-&gt;process(samples);
+    }
+    /**
+     * @brief Process a block of samples
+     * @details Processes a block of samples of audio data
+     * @param samples An array of samples
+     * @return An array of processed samples
+     */
+    auto process(const std::array&lt;double, blockSize&gt; &samples) -&gt; void {
+        if (blockSize &lt;= 0) {
+            LOG_E("LowPassFilter", "Error processing block of samples: "
+                                   "blockSize must be greater than zero");
+            return;
+        }
+        m_filter-&gt;process(samples);
+    }
+    /**
+     * @brief Set the cutoff frequency of the filter
+     * @param cutoff The cutoff frequency of the filter
+     */
+    auto set_cutoff(const double cutoff) -&gt; void {
+        m_cutoff = cutoff;
+        Coefficients&lt;T&gt; newCoefficients =
+                calculate_coefficients(m_cutoff, m_sampleRate, m_qFactor);
+        m_filter-&gt;set_coefficients(newCoefficients);
+    }
+    /**
+     * @brief Get the cutoff frequency of the filter
+     * @return The cutoff frequency of the filter
+     */
+    [[nodiscard]] auto get_cutoff() const -&gt; double { return m_cutoff; }
+    /**
+     * @brief Set the sample rate of the input signal
+     * @param sampleRate The sample rate of the input signal
+     */
+    auto set_sample_rate(const int sampleRate) -&gt; void {
+        m_sampleRate = sampleRate;
+        Coefficients&lt;T&gt; newCoefficients =
+                calculate_coefficients(m_cutoff, m_sampleRate, m_qFactor);
+        m_filter-&gt;set_coefficients(newCoefficients);
+    }
+    /**
+     * @brief Get the sample rate of the input signal
+     * @return The sample rate of the input signal
+     */
+    [[nodiscard]] auto get_sample_rate() const -&gt; int { return m_sampleRate; }
+    /**
+     * @brief Set the quality factor of the filter
+     * @param qFactor The quality factor of the filter
+     */
+    auto set_q_factor(const double qFactor) -&gt; void {
+        m_qFactor = qFactor;
+        Coefficients&lt;T&gt; newCoefficients =
+                calculate_coefficients(m_cutoff, m_sampleRate, m_qFactor);
+        m_filter-&gt;set_coefficients(newCoefficients);
+    }
+    /**
+     * @brief Get the quality factor of the filter
+     * @return The quality factor of the filter
+     */
+    [[nodiscard]] auto get_q_factor() const -&gt; double { return m_qFactor; }
+    /**
+     * @brief Set the bandwidth of the filter
+     * @param bandwidth The bandwidth of the filter
+     */
+    auto set_bandwidth(const float bandwidth) -&gt; void {
+        const double Q =
+                1.0 / (2.0 * std::sinh(bandwidth * std::log10(2.0) / 2.0));
+        set_q_factor(Q);
+    }
+    /**
+     * @brief Get the bandwidth of the filter
+     * @return The bandwidth of the filter
+     */
+    [[nodiscard]] auto get_bandwidth() const -&gt; double {
+        const double bandwidth =
+                2.0 * std::asinh(1.0 / (2.0 * m_qFactor)) / std::log10(2.0);
+        return bandwidth;
+    }
+
+private:
+    /**
+     * @brief Private Constructor
+     * @details Initializes the filter with parameters
+     * @param cutoff The cutoff frequency of the filter
+     * @param sampleRate The sample rate of the input signal
+     * @param qFactor The quality factor of the filter
+     */
+    LowPassFilter(const double cutoff, const int sampleRate,
+                  const double qFactor) :
+        m_cutoff(cutoff), m_sampleRate(sampleRate), m_qFactor(qFactor) {
+        Coefficients&lt;T&gt; coefficients =
+                calculate_coefficients(cutoff, sampleRate, qFactor);
+        m_filter = DigitalBiquadFilter&lt;T, blockSize&gt;::create(coefficients);
+    }
+
+    /**
+     * @brief Calculate the filter coefficients
+     * @details Calculates the filter coefficients based on the cutoff
+     * frequency, sample rate, and quality factor
+     */
+    [[nodiscard]] static auto calculate_coefficients(const double cutoff,
+                                                     const int sampleRate,
+                                                     const double qFactor)
+            -&gt; Coefficients&lt;T&gt; {
+        const T w0 = 2.0 * M_PI * cutoff / sampleRate;
+        const T cos_w0 = std::cos(w0);
+        const T alpha = std::sin(w0) / (2.0 * qFactor);
+        const T b1 = 1.0 - cos_w0;
+        const T b0 = b1 / 2.0;
+        const T b2 = b0;
+        const T a0 = 1.0 + alpha;
+        const T a1 = -2.0 * cos_w0;
+        const T a2 = 1.0 - alpha;
+        return Coefficients{b0, b1, b2, a0, a1, a2};
+    }
+
+    std::optional&lt;DigitalBiquadFilter&lt;T, blockSize&gt;&gt; m_filter;
+    double m_cutoff;
+    int m_sampleRate;
+    double m_qFactor;
+};
+
+#endif // LOW_PASS_FILTER_H</code></pre>
+            <hr>
+            <h3>Notes:</h3>
+            <br>
+            <ul>
+                <li>Since Q-factor is a unit-less value and is a little hard to quantify, sometimes it is easier to provide bandwidth instead. Bandwidth can be converted to the Q-factor by using the formula:</li>
+                <ul>
+                    <li>\(Q = {1 \over {2sinh(BW ⋅ {log_{10}(2) \over 2})}}\)</li>
+                </ul>
+                <li>There is a <a href="concepts.html">concept</a> applied to the templated coefficients struct, state struct, and filter class: <code>std::floating_point</code>. This ensures that the <code>LowPassFilter</code> class can only be templated with a <code>float</code> or <code>double</code> type.</li>
+                <li>To reduce the chance of encountering quantization noise, it's recommended to always template the <code>LowPassFilter</code> class with a <code>double</code> type.</li>
+            </ul>
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <div class="p-4 mb-3 bg-body-tertiary rounded">
+                    <h4 class="fst-italic">Table Of Contents</h4>
+                    <h5>Audio Topics</h5>
+                    <ul>
+                        <li><a href="circularBuffer.html">Circular Buffers</a></li>
+                        <li><a href="digitalBiquadFilter.html">Digital Biquad Filters</a></li>
+                        <ul>
+                            <li><a href="#"><b>Low Pass Filters</b></a></li>
+                            <li><a href="highPassFilter.html">High Pass Filter</a></li>
+                        </ul>
+                    </ul>
+                    <h5>C++ Topics</h5>
+                    <ul>
+                        <li><a href="concepts.html">Concepts (C++20)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+    <p>© 2025 Alex Parisi</a>.
+    </p>
+    <p class="mb-0">
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+<script src="../js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

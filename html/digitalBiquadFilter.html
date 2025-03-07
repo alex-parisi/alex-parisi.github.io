@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -95,7 +96,6 @@
         .reveal pre code, .hljs {
             background-color: #C1C1C1 !important;
         }
-
         .reveal pre, .hljs {
             box-shadow: none !important;
         }
@@ -197,35 +197,21 @@
 <main class="container">
     <div class="row g-5">
         <div class="col-md-8 p-4">
-            <h1>Circular/Ring Buffers</h1>
+            <h1>Digital Biquad Filters</h1>
+            <br>
+            <h5 class="fst-italic">Second order recursive linear filtering</h5>
             <hr>
             <h3>Brief:</h3>
             <br>
-            <ul>
-                <li>A <b>circular buffer</b> (also known as a <b>ring buffer</b>) is a fixed-size data structure that uses a
-                    single, contiguous block of memory as if it were connected end-to-end. It maintains two pointers: a <b>write
-                        pointer</b>(where new data is added) and a <b>read pointer</b> (where data is consumed). When either
-                    pointer reaches the end of the buffer, it wraps around to the beginning.</li>
-                <li>Since it uses a fixed-size buffer, there is no need to allocate or free memory dynamically. This helps
-                    avoid memory fragmentation and keeps performance consistent.</li>
-                <li>As the buffer fills up, new audio samples can overwrite the oldest samples, which is
-                    ideal for real-time audio where recent data is often more relevant.</li>
-                <li>Circular buffers are perfect for scenarios where one part of the system produces data
-                    while another part consumes it. The circular nature ensures smooth
-                    data flow, even if the producer and consumer operate at slightly different speeds.</li>
-            </ul>
+            <p> <i>Biquad</i> refers to the fact that the transfer function of the filter is the ratio of two quadratic functions:</p>
+            <p>\(H(z) = {b_{0} + b_{1}z^{-1} + b_{2}z^{-2} \over {a_{0} + a_{1}z^{-1} + a_{2}z^{-2}}}\)</p>
+            <p>Higher-order IIR filters are prone to instability due to coefficient quantization, so they are often implemented as cascaded biquad sections, ensuring all poles remain inside the unit circle in the Z-domain for stability.</p>
+            <p>Second order filters are also very simple to implement, as they only require managing six coefficient values and four state values. Implementing a biquad filter is as simple as defining the difference equation:</p>
+            <p>\( y_{n} = {b_{0} \over a_{0}}x_{n} + {b_{1} \over a_{0}}x_{n - 1} + {b_{2} \over a_{0}}x_{n - 2} - {a_{1} \over a_{0}}y_{n - 1} - {a_{2} \over a_{0}}y_{n - 2}\)</p>
             <hr>
-            <h3>Considerations:</h3>
+            <h3>C++ Implementation:</h3>
             <br>
-            <ul>
-                <li>The <b>producer</b> and <b>consumer</b> are typically on different threads, and therefore read and writing to the buffer is thread-safe.</li>
-                <li>A mutex can be utilized to protect the buffer from being concurrently modified.</li>
-                <li>A condition variable can be utilized by a producer to notify a waiting consumer.</li>
-            </ul>
-            <hr>
-            <h3>C++ Implementation</h3>
-            <br>
-            <pre><code>/// CircularBuffer.h
+            <pre><code>/// DigitalBiquadFilter.h
 
 /**
 Copyright © 2025 Alex Parisi
@@ -249,267 +235,191 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef CIRCULAR_BUFFER_H
-#define CIRCULAR_BUFFER_H
+#ifndef DIGITAL_BIQUAD_FILTER_H
+#define DIGITAL_BIQUAD_FILTER_H
 
 #include &lt;array&gt;
-#include &lt;atomic&gt;
-#include &lt;mutex&gt;
+#include &lt;concepts&gt;
 #include &lt;optional&gt;
 #include &lt;vector&gt;
 
+#include "Logging.h"
+
 /**
- * @brief A thread-safe circular buffer with a fixed size that supports
- * concurrent push and pop operations. Thread-safety is achieved by using a
- * mutex and condition variable. The producer (writing thread) will never be
- * blocked, as the buffer will overwrite the oldest data if it is full. The
- * consumer (reading thread) will wait for data if the buffer is empty, or does
- * not contain enough requested samples.
- * @tparam T the type of elements in the buffer
- * @tparam blockSize the blockSize for array operations. If this is not defined,
- * you can only use std::vector for block operations.
+ * @brief Coefficients Struct
+ * @details A struct containing the coefficients of a digital biquad filter
  */
-template&lt;typename T, size_t blockSize = 0&gt;
-class CircularBuffer {
+template&lt;std::floating_point T&gt;
+struct Coefficients {
+    T b0, b1, b2, a0, a1, a2;
+};
+
+/**
+ * @brief State Struct
+ * @details A struct containing the state variables of a digital biquad filter
+ */
+template&lt;std::floating_point T&gt;
+struct State {
+    T x1, x2, y1, y2;
+};
+
+/**
+ * @brief Digital Biquad Filter
+ * @details A digital biquad filter is a type of infinite impulse response
+ * filter. The transfer function is defined by the following equation: H(z) =
+ * (b0 + b1*z^-1 + b2*z^-2) / (a0 + a1*z^-1 + a2*z^-2) The filter is implemented
+ * by applying the following difference equation: y[n] = b0*x[n] + b1*x[n-1] +
+ * b2*x[n-2] - a1*y[n-1] - a2*y[n-2]
+ */
+template&lt;std::floating_point T, size_t blockSize = 0&gt;
+class DigitalBiquadFilter {
 public:
-    explicit CircularBuffer(const size_t capacity) : m_capacity(capacity) {
-        m_buffer.resize(capacity);
-    }
-
     /**
-     * @brief Push a sample into the buffer
-     * @param value The sample to push
+     * @brief Public Constructor
+     * @details Creates a filter with specified coefficients
+     * @param coefficients A Coefficients struct containing the filter
+     * coefficients: b0, b1 b2, a0, a1, a2
+     * @see Coefficients
      */
-    auto push(const T &value) -&gt; void {
-        std::unique_lock lock(m_mutex);
-        _push(value);
-        m_cv.notify_one();
-    }
-
-    /**
-     * @brief Push multiple samples into the buffer
-     * @param values Pointer to the array of samples
-     * @param count Number of samples to push
-     */
-    auto push(const T *values, const size_t count) -&gt; void {
-        if (values == nullptr)
-            return;
-        std::unique_lock lock(m_mutex);
-        for (size_t i = 0; i &lt; count; ++i) {
-            _push(values[i]);
+    static auto create(const Coefficients&lt;T&gt; &coefficients)
+            -&gt; std::optional&lt;DigitalBiquadFilter&gt; {
+        if (coefficients.a0 == 0.0) {
+            LOG_E("DigitalBiquadFilter",
+                  "Error creating DigitalBiquadFilter object: the a0 "
+                  "coefficient cannot be zero");
+            return std::nullopt;
         }
-        m_cv.notify_one();
+        return DigitalBiquadFilter(coefficients);
     }
-
     /**
-     * @brief Push a vector of samples into the buffer
-     * @param values The vector of samples to push
+     * @brief Process a sample
+     * @details Processes a single sample of audio data
+     * @param sample The input sample
      */
-    auto push(const std::vector&lt;T&gt; &values) -&gt; void {
-        if (values.empty())
-            return;
-        std::unique_lock lock(m_mutex);
-        for (const auto &value: values) {
-            _push(value);
-        }
-        m_cv.notify_one();
+    auto process(const T &sample) -&gt; T {
+        const T output =
+                ((m_coefficients.b0 / m_coefficients.a0) * sample) +
+                ((m_coefficients.b1 / m_coefficients.a0) * m_state.x1) +
+                ((m_coefficients.b2 / m_coefficients.a0) * m_state.x2) -
+                ((m_coefficients.a1 / m_coefficients.a0) * m_state.y1) -
+                ((m_coefficients.a2 / m_coefficients.a0) * m_state.y2);
+        m_state.x2 = m_state.x1;
+        m_state.x1 = sample;
+        m_state.y2 = m_state.y1;
+        m_state.y1 = output;
+
+        m_iter++;
+        return output;
     }
-
     /**
-     * @brief Push an array of samples into the buffer. Requires the blockSize
-     * to be defined when templating.
-     * @param values The array of samples to push
+     * @brief Process a block of samples
+     * @details Processes a block of samples of audio data
+     * @param samples A pointer to the block of samples. The samples are edited
+     * in-place. This assumes that the pointer has enough memory allocated to
+     * pull out blockSize samples and is inherently unsafe. For block,
+     * processing, it's safer to use the block process methods with either a
+     * std::vector or std::array.
      */
-    auto push(const std::array&lt;T, blockSize&gt; &values) -&gt; void {
+    auto process(T *samples) -&gt; void {
         if (blockSize &lt;= 0) {
+            LOG_E("DigitalBiquadFilter",
+                  "Error processing block of samples: blockSize must be "
+                  "greater than zero.");
             return;
         }
-        std::unique_lock lock(m_mutex);
+        if (samples == nullptr) {
+            LOG_E("DigitalBiquadFilter",
+                  "Error processing block of samples: samples pointer is null");
+            return;
+        }
         for (size_t i = 0; i &lt; blockSize; ++i) {
-            _push(values[i]);
+            samples[i] = process(samples[i]);
         }
-        m_cv.notify_one();
     }
-
     /**
-     * @brief Pop a sample from the buffer
-     * @return The sample that was popped
+     * @brief Process a block of samples
+     * @details Processes a block of samples of audio data. Since this method
+     * uses a std::vector as input, we don't need to rely on blockSize being
+     * passed in. The samples are edited in place.
+     * @param samples A vector of samples
      */
-    auto pop() -&gt; T {
-        std::unique_lock lock(m_mutex);
-        /// Wait until there's at least one sample
-        m_cv.wait(lock, [this]() -&gt; bool { return m_size &gt; 0; });
-        return _pop();
-    }
-
-    /**
-     * @brief Pop samples from the buffer directly into an array or pointer.
-     * @param values Pointer to the array to store the samples
-     * @param count The number of samples to pop
-     * @return
-     */
-    auto pop(T *values, const size_t count) {
-        if (count &lt;= 0) {
+    auto process(std::vector&lt;T&gt; &samples) -&gt; void {
+        if (samples.empty()) {
+            LOG_E("DigitalBiquadFilter",
+                  "Error processing block of samples: samples vector is empty");
             return;
         }
-        std::unique_lock lock(m_mutex);
-        /// Wait until there's enough samples
-        m_cv.wait(lock, [this, count]() -&gt; bool { return m_size &gt;= count; });
-        for (size_t i = 0; i &lt; count; ++i) {
-            values[i] = _pop();
+        for (auto &sample: samples) {
+            sample = process(sample);
         }
     }
-
     /**
-     * @brief Pop multiple samples from the buffer
-     * @param count The number of samples to pop
-     * @return A vector of samples that were popped
+     * @brief Process a block of samples
+     * @details Processes a block of samples of audio data. The samples are
+     * edited in place.
+     * @param samples An array of samples
      */
-    auto pop(const size_t count) -&gt; std::vector&lt;T&gt; {
-        if (count &lt;= 0)
-            return {};
-        std::unique_lock lock(m_mutex);
-        /// Wait until there's enough samples
-        m_cv.wait(lock, [this, count]() -&gt; bool { return m_size &gt;= count; });
-        std::vector&lt;T&gt; values(count);
-        for (size_t i = 0; i &lt; count; ++i) {
-            values[i] = _pop();
-        }
-        return values;
-    }
-
-    /**
-     * @brief Pop a block of samples from the buffer. Requires the blockSize to
-     * be defined when templating.
-     * @return An array of samples that were popped
-     */
-    auto pop_block() -&gt; std::array&lt;T, blockSize&gt; {
+    auto process(std::array&lt;T, blockSize&gt; &samples) -&gt; void {
         if (blockSize &lt;= 0) {
-            return {};
+            LOG_E("DigitalBiquadFilter", "Error processing block of samples: "
+                                         "blockSize must be greater than zero");
+            return;
         }
-        std::unique_lock lock(m_mutex);
-        /// Wait until there's enough samples
-        m_cv.wait(lock, [this]() -&gt; bool { return m_size &gt;= blockSize; });
-        std::array&lt;T, blockSize&gt; values;
         for (size_t i = 0; i &lt; blockSize; ++i) {
-            values[i] = _pop();
+            samples[i] = process(samples[i]);
         }
-        return values;
     }
-
     /**
-     * @brief Clears the buffer
+     * @brief Set the filter coefficients
+     * @details Sets the filter coefficients to custom values
+     * @param coefficients A Coefficients struct containing the filter
+     * coefficients: b0, b1 b2, a0, a1, a2
+     * @see Coefficients
      */
-    auto clear() -&gt; void {
-        std::unique_lock lock(m_mutex);
-        m_head = 0;
-        m_tail = 0;
-        m_size = 0;
-        m_buffer.clear();
-        m_buffer.resize(m_capacity);
+    auto set_coefficients(const Coefficients&lt;T&gt; &coefficients) -&gt; void {
+        m_coefficients = coefficients;
+        reset();
     }
-
     /**
-     * @brief Get the size of the buffer
-     * @return The number of samples currently stored in the buffer
+     * @brief Reset the filter
+     * @details Resets the filter state variables
      */
-    [[nodiscard]] auto size() -&gt; size_t { return m_size; }
-
-    /**
-     * @brief Check if the buffer is empty
-     * @return True if the buffer is empty, false otherwise
-     */
-    [[nodiscard]] auto empty() const -&gt; bool { return m_size == 0; }
-
-    /**
-     * @brief Check if the buffer is full
-     * @return True if the buffer is full, false otherwise
-     */
-    [[nodiscard]] auto full() const -&gt; bool { return m_size == m_capacity; }
-
-    /**
-     * @brief Get the capacity of the buffer
-     * @return The maximum number of samples the buffer can hold
-     */
-    [[nodiscard]] auto capacity() const -&gt; size_t { return m_capacity; }
+    auto reset() -&gt; void {
+        m_state.x1 = 0.0;
+        m_state.x2 = 0.0;
+        m_state.y1 = 0.0;
+        m_state.y2 = 0.0;
+        m_iter = 0;
+    }
 
 private:
     /**
-     * @brief Helper function to push a value into the buffer
-     * @param value The value to push
+     * @brief Private Constructor
+     * @details Initializes the filter with specified coefficients
+     * @param coefficients A Coefficients struct containing the filter
+     * coefficients: b0, b1 b2, a0, a1, a2
+     * @see Coefficients
      */
-    auto _push(const T &value) -&gt; void {
-        m_buffer[m_head] = value;
-        m_head = (m_head + 1) % m_capacity;
-        /// Update the current size, ensuring it doesn't exceed the buffer size
-        /// if we've overwritten old data. If our buffer is full, make sure the
-        /// head and tail pointers are the same.
-        m_size = std::min(m_size + 1, m_capacity);
-        if (m_size == m_capacity) {
-            m_tail = m_head;
-        }
-    }
+    explicit DigitalBiquadFilter(const Coefficients&lt;T&gt; &coefficients) :
+        m_coefficients(coefficients) {}
 
-    /**
-     * @brief Helper function to pop a value from the buffer
-     * @return The value that was popped
-     */
-    auto _pop() -&gt; T {
-        T value = std::move(m_buffer[m_tail].value());
-        m_buffer[m_tail].reset();
-        m_tail = (m_tail + 1) % m_capacity;
-        --m_size;
-        return value;
-    }
+    /** The filter coefficients */
+    Coefficients&lt;T&gt; m_coefficients = {};
 
-    /** The buffer */
-    std::vector&lt;std::optional&lt;T&gt;&gt; m_buffer;
+    /** The filter state variables */
+    State&lt;T&gt; m_state = {};
 
-    /** The head of the buffer */
-    size_t m_head = 0;
-
-    /** The tail of the buffer */
-    size_t m_tail = 0;
-
-    /** The number of samples currently stored in the buffer */
-    std::atomic&lt;size_t&gt; m_size = 0;
-
-    /** The maximum number of samples the buffer can hold */
-    size_t m_capacity = 0;
-
-    /** The mutex used to protect the buffer */
-    std::mutex m_mutex;
-
-    /** The condition variable used to notify waiting consumer threads */
-    std::condition_variable m_cv;
+    /** The number of iterations */
+    long long m_iter = 0LL;
 };
 
-#endif // CIRCULAR_BUFFER_H</code></pre>
+#endif // DIGITAL_BIQUAD_FILTER_H</code></pre>
             <hr>
             <h3>Notes:</h3>
             <br>
             <ul>
-                <li><code>m_size</code> is an atomic to allow for some of the house-keeping functions like <code>size()</code> and <code>empty()</code> to not require locking the mutex.</li>
-                <li>The class is templated with the type of the object stored in the buffer and the buffer size for block operations: <pre><code>/// Block size = 512, Total buffer size = 2048
-CircularBuffer&lt;float, 512&gt; buffer(2048);
-
-/// Buffer gets filled with data
-
-std::array&lt;float, 512&gt; block = buffer.pop_block();</code></pre></li>
-                <li>If the block size is not provided, the only supported block operations involve raw pointers and heap-allocated containers like <code>std::vector</code>:<pre><code>/// Block size = 0, Total buffer size = 512
-CircularBuffer&lt;double&gt; buffer(512);
-
-/// Buffer gets filled with data
-
-auto block = buffer.pop_block(); /// block == {}
-
-std::vector&lt;double&gt; block = buffer.pop(10); /// block.size() == 10
-
-int size = 10;
-double* array[size];
-buffer.pop(array, size); /// array now contains the popped data</code></pre></li>
-                <li>The buffer utilizes std::optional to allow for proper resetting of the object state after moving, which is useful when <code>T</code> is templated to be a complex class.</li>
-                <li>Data is moved from the buffer to the consumer, avoiding copies.</li>
+                <li>There is a <a href="concepts.html">concept</a> applied to the templated coefficients struct, state struct, and filter class: <code>std::floating_point</code>. This ensures that the <code>DigitalBiquadFilter</code> class can only be templated with a <code>float</code> or <code>double</code> type.</li>
+                <li>To reduce the chance of encountering quantization noise, it's recommended to always template the <code>DigitalBiquadFilter</code> class with a <code>double</code> type.</li>
             </ul>
         </div>
 
@@ -519,8 +429,8 @@ buffer.pop(array, size); /// array now contains the popped data</code></pre></li
                     <h4 class="fst-italic">Table Of Contents</h4>
                     <h5>Audio Topics</h5>
                     <ul>
-                        <li><a href="#"><b>Circular Buffers</b></a></li>
-                        <li><a href="digitalBiquadFilter.html">Digital Biquad Filters</a></li>
+                        <li><a href="circularBuffer.html">Circular Buffers</a></li>
+                        <li><a href="#"><b>Digital Biquad Filters</b></a></li>
                         <ul>
                             <li><a href="lowPassFilter.html">Low Pass Filters</a></li>
                             <li><a href="highPassFilter.html">High Pass Filter</a></li>
@@ -534,10 +444,12 @@ buffer.pop(array, size); /// array now contains the popped data</code></pre></li
             </div>
         </div>
     </div>
+
 </main>
 
 <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
-    <p>© 2025 Alex Parisi</p>
+    <p>© 2025 Alex Parisi</a>.
+    </p>
     <p class="mb-0">
         <a href="#">Back to top</a>
     </p>

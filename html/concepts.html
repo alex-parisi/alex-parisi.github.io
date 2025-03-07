@@ -186,7 +186,9 @@
 <div class="container">
     <div class="nav-scroller py-1 mb-3 border-bottom">
         <nav class="nav nav-underline justify-content-between">
-            <a class="nav-item nav-link link-body-emphasis" href="wiki.html">Back</a>
+            <a class="nav-item nav-link link-body-emphasis" href="javascript:history.back()">Back</a>
+            <a class="nav-item nav-link link-body-emphasis" href="wiki.html">Wiki Home</a>
+            <a class="nav-item nav-link link-body-emphasis" href="../index.html">Main Home</a>
         </nav>
     </div>
 </div>
@@ -332,16 +334,19 @@ void print_line(IsPrintable auto const ... arguments) {
         <div class="col-md-4">
             <div class="position-sticky" style="top: 2rem;">
                 <div class="p-4 mb-3 bg-body-tertiary rounded">
-                    <a href="wiki.html">Back</a>
-                    <br><br>
                     <h4 class="fst-italic">Table Of Contents</h4>
                     <h5>Audio Topics</h5>
                     <ul>
                         <li><a href="circularBuffer.html">Circular Buffers</a></li>
+                        <li><a href="digitalBiquadFilter.html">Digital Biquad Filters</a></li>
+                        <ul>
+                            <li><a href="lowPassFilter.html">Low Pass Filters</a></li>
+                            <li><a href="highPassFilter.html">High Pass Filter</a></li>
+                        </ul>
                     </ul>
                     <h5>C++ Topics</h5>
                     <ul>
-                        <li><b><a href="concepts.html">Concepts (C++20)</a></b></li>
+                        <li><a href="#"><b>Concepts (C++20)</b></a></li>
                     </ul>
                 </div>
             </div>
