@@ -208,13 +208,13 @@
 <main class="container">
     <div class="row g-5">
         <div class="col-md-8 p-4">
-            <h1>High Pass Filters</h1>
+            <h1>Band Pass Filters</h1>
             <br>
             <h5 class="fst-italic"><a href="digitalBiquadFilter.html">Digital Biquad Filtering</a></h5>
             <hr>
             <h3>Brief:</h3>
             <br>
-            <p>A second-order biquad high-pass filter attenuates frequencies below a specified cutoff while allowing higher frequencies to pass through, using a combination of two poles and two zeros to shape the frequency response. It is implemented using a difference equation with feedback and feedforward coefficients, offering precise control over gain, cutoff frequency, and resonance (Q factor).</p>
+            <p>A second-order biquad band-pass filter allows frequencies around a specified center frequency to pass through while attenuating frequencies outside this range, using a combination of two poles and two zeros to shape the frequency response. It is implemented using a difference equation with feedback and feedforward coefficients, offering precise control over gain, center frequency, and bandwidth or resonance (Q factor). This makes it ideal for isolating specific frequency bands in audio and signal processing applications.</p>
             <div class="row g-5">
                 <div class="col-md-8 d-flex flex-column h-100 p-0 ps-5">
                     <div id="magnitudePlot" class="flex-fill bg-gray p-0"></div>
@@ -223,7 +223,7 @@
                 <div class="col-md-4 d-flex flex-column p-0">
                     <div class="flex-fill bg-gray">
                         <div class="row p-3">
-                            <label for="cutoffSlider" style="color: black;">Cutoff Frequency \(f_{0}\):</label>
+                            <label for="cutoffSlider" style="color: black;">Center Frequency \(f_{0}\):</label>
                             <input type="range" id="cutoffSlider" min="0" max="100" value="50" />
                         </div>
                         <p style="color: black;">\(f_{0}\) = <span id="cutoffValue">1000</span></p>
@@ -232,6 +232,10 @@
                             <input type="range" id="qSlider" min="0.001" max="2.0" value="0.707" step="0.001" />
                         </div>
                         <p style="color: black;">\(Q\) = <span id="qValue">0.707</span></p>
+                        <div class="row p-3">
+                            <input type="checkbox" id="constantSkirt" />
+                            <label for="constantSkirt" style="color: black; margin-left: 0.5em;">Use Constant Skirt Gain</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -248,14 +252,22 @@
                 const customTickVals = [16, 31.25, 62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
 
                 // Define the replot function that computes and updates the filter response plots
-                const replot = (fc, q) => {
+                const replot = (fc, q, constantSkirt) => {
                     const fs = 48000;
                     // Calculate filter design parameters
                     const w0 = 2 * Math.PI * fc / fs;
                     const alpha = Math.sin(w0) / (2 * q);
-                    const b0 = (1 + Math.cos(w0)) / 2;
-                    const b1 = -(1 + Math.cos(w0));
-                    const b2 = (1 + Math.cos(w0)) / 2;
+
+                    let b0, b1, b2;
+                    if (constantSkirt) {
+                        b0 = q * alpha;
+                        b1 = 0;
+                        b2 = -q * alpha;
+                    } else {
+                        b0 = alpha;
+                        b1 = 0;
+                        b2 = -alpha;
+                    }
                     const a0 = 1 + alpha;
                     const a1 = -2 * Math.cos(w0);
                     const a2 = 1 - alpha;
@@ -353,6 +365,7 @@
                 const cutoffOutput = document.getElementById('cutoffValue');
                 const qSlider = document.getElementById('qSlider');
                 const qOutput = document.getElementById('qValue');
+                const constantSkirtCheckbox = document.getElementById('constantSkirt');
 
                 // Define the logarithmic conversion parameters for the cutoff slider
                 const minValue = 60;
@@ -371,7 +384,8 @@
                     const fc = sliderToLog(cutoffSlider.value);
                     cutoffOutput.textContent = fc.toFixed(2);
                     const q = parseFloat(qSlider.value);
-                    replot(fc, q);
+                    const constantSkirt = constantSkirtCheckbox.checked;
+                    replot(fc, q, constantSkirt);
                 });
 
                 // Update the Q value display and replot when the Q slider changes
@@ -379,13 +393,23 @@
                     const q = parseFloat(qSlider.value);
                     qOutput.textContent = q;
                     const fc = sliderToLog(cutoffSlider.value);
-                    replot(fc, q);
+                    const constantSkirt = constantSkirtCheckbox.checked;
+                    replot(fc, q, constantSkirt);
+                });
+
+                // Update the constant skirt checkbox and replot when it changes
+                constantSkirtCheckbox.addEventListener('change', function() {
+                    const fc = sliderToLog(cutoffSlider.value);
+                    const q = parseFloat(qSlider.value);
+                    const constantSkirt = constantSkirtCheckbox.checked;
+                    replot(fc, q, constantSkirt);
                 });
 
                 // Initial call to replot using the starting slider values
                 const initialFc = sliderToLog(cutoffSlider.value);
                 const initialQ = parseFloat(qSlider.value);
-                replot(initialFc, initialQ);
+                const initialConstantSkirt = constantSkirtCheckbox.checked;
+                replot(initialFc, initialQ, initialConstantSkirt);
 
                 // Resize the plots when the window is resized
                 window.addEventListener('resize', () => {
@@ -396,18 +420,29 @@
             <hr>
             <h3>Formulae:</h3>
             <br>
-            <p>In order to construct a biquad high-pass filter, the <code>sample rate</code>, <code>cutoff frequency</code>, and <code>Q-factor</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
+            <p>In order to construct a biquad band-pass filter, the <code>sample rate</code>, <code>cutoff frequency</code>, and <code>Q-factor</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
             <p>First, some intermediate values are calculated:</p>
             <ul>
                 <li>\(ω_{0} = 2π{f_{0} \over F_{s}}\)</li>
                 <li>\(α = {sin(ω_{0}) \over {2Q}}\)</li>
             </ul>
             <p>Where \(f_{0}\) is the cutoff frequency, \(F_{s}\) is the sample rate, and \(Q\) is the Q-factor.</p>
+            <p>There is also an option of configuring the band-pass filter to use constant skirt gain, in which the peak linear gain is equal to the Q-factor. Otherwise, the peak gain will be 0dB.</p>
             <p>Then, the filter coefficients can be calculated:</p>
+            <p>For constant skirt gain:</p>
             <ul>
-                <li>\(b_{0} = {{1 + cos(ω_{0})}\over{2}}\)</li>
-                <li>\(b_{1} = -(1 + cos(ω_{0}))\)</li>
-                <li>\(b_{2} = {{1 + cos(ω_{0})}\over{2}}\)</li>
+                <li>\(b_{0} = Qα\)</li>
+                <li>\(b_{1} = 0\)</li>
+                <li>\(b_{2} = -Qα\)</li>
+                <li>\(a_{0} = 1 + α\)</li>
+                <li>\(a_{1} = -2cos(ω_{0})\)</li>
+                <li>\(a_{2} = 1 - α\)</li>
+            </ul>
+            <p>For 0dB peak gain:</p>
+            <ul>
+                <li>\(b_{0} = α\)</li>
+                <li>\(b_{1} = 0\)</li>
+                <li>\(b_{2} = -α\)</li>
                 <li>\(a_{0} = 1 + α\)</li>
                 <li>\(a_{1} = -2cos(ω_{0})\)</li>
                 <li>\(a_{2} = 1 - α\)</li>
@@ -436,8 +471,8 @@
                         <li><a href="digitalBiquadFilter.html">Digital Biquad Filters</a></li>
                         <ul>
                             <li><a href="lowPassFilter.html">Low Pass Filters</a></li>
-                            <li><a href="#"><b>High Pass Filters</b></a></li>
-                            <li><a href="bandPassFilter.html">Band Pass Filters</a></li>
+                            <li><a href="highPassFilter.html">High Pass Filter</a></li>
+                            <li><a href="#"><b>Band Pass Filter</b></a></li>
                         </ul>
                     </ul>
                     <h5>C++ Topics</h5>
