@@ -232,10 +232,8 @@
                             <input type="range" id="qSlider" min="0.001" max="2.0" value="0.707" step="0.001" />
                         </div>
                         <p style="color: black;">\(Q\) = <span id="qValue">0.707</span></p>
-                        <div class="row p-3">
-                            <input type="checkbox" id="constantSkirt" />
-                            <label for="constantSkirt" style="color: black; margin-left: 0.5em;">Use Constant Skirt Gain</label>
-                        </div>
+                        <label for="constantSkirt" style="color: black;">Constant Skirt Gain: </label>
+                        <input type="checkbox" id="constantSkirt" />
                     </div>
                 </div>
             </div>
@@ -320,7 +318,7 @@
 
                     // Layout settings for the magnitude plot
                     let magnitudeLayout = {
-                        title: { text: 'High Pass Filter Frequency Response' },
+                        title: { text: 'Band Pass Filter Frequency Response' },
                         xaxis: {
                             title: { text: 'Frequency (Hz) (logarithmic)' },
                             type: 'log',
