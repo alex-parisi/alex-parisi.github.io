@@ -208,13 +208,13 @@
 <main class="container">
     <div class="row g-5">
         <div class="col-md-8 p-4">
-            <h1>High Pass Filters</h1>
+            <h1>Notch Filters</h1>
             <br>
             <h5 class="fst-italic"><a href="digitalBiquadFilter.html">Digital Biquad Filtering</a></h5>
             <hr>
             <h3>Brief:</h3>
             <br>
-            <p>A second-order biquad high-pass filter attenuates frequencies below a specified cutoff while allowing higher frequencies to pass through, using a combination of two poles and two zeros to shape the frequency response. It is implemented using a difference equation with feedback and feedforward coefficients, offering precise control over gain, cutoff frequency, and resonance (Q factor).</p>
+            <p>A second-order biquad notch filter selectively attenuates a narrow band of frequencies around a specified center while allowing others to pass, using a combination of two poles and two zeros to shape its frequency response. It is implemented with a difference equation employing both feedback and feedforward coefficients, providing precise control over gain, center frequency, and bandwidth (Q factor).</p>
             <div class="row g-5">
                 <div class="col-md-8 d-flex flex-column h-100 p-0 ps-5">
                     <div id="magnitudePlot" class="flex-fill bg-gray p-0"></div>
@@ -239,7 +239,7 @@
                 // Generate a frequency array logarithmically spaced between 20 Hz and 20,000 Hz
                 const startFreq = 20;
                 const endFreq = 20000;
-                const numPoints = 100; // Number of points in the frequency range
+                const numPoints = 1000; // Number of points in the frequency range
                 const frequencies = Array.from({ length: numPoints }, (_, i) =>
                     startFreq * Math.pow(endFreq / startFreq, i / (numPoints - 1))
                 );
@@ -253,9 +253,10 @@
                     // Calculate filter design parameters
                     const w0 = 2 * Math.PI * fc / fs;
                     const alpha = Math.sin(w0) / (2 * q);
-                    const b0 = (1 + Math.cos(w0)) / 2;
-                    const b1 = -(1 + Math.cos(w0));
-                    const b2 = (1 + Math.cos(w0)) / 2;
+
+                    const b0 = 1;
+                    const b1 = -2 * Math.cos(w0);
+                    const b2 = 1;
                     const a0 = 1 + alpha;
                     const a1 = -2 * Math.cos(w0);
                     const a2 = 1 - alpha;
@@ -308,7 +309,7 @@
 
                     // Layout settings for the magnitude plot
                     let magnitudeLayout = {
-                        title: { text: 'High Pass Filter Frequency Response' },
+                        title: { text: 'Notch Filter Frequency Response' },
                         xaxis: {
                             type: 'log',
                             tickvals: customTickVals,
@@ -395,7 +396,7 @@
             <hr>
             <h3>Formulae:</h3>
             <br>
-            <p>In order to construct a biquad high-pass filter, the <code>sample rate</code>, <code>cutoff frequency</code>, and <code>Q-factor</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
+            <p>In order to construct a biquad notch filter, the <code>sample rate</code>, <code>cutoff frequency</code>, and <code>Q-factor</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
             <p>First, some intermediate values are calculated:</p>
             <ul>
                 <li>\(ω_{0} = 2π{f_{0} \over F_{s}}\)</li>
@@ -404,9 +405,9 @@
             <p>Where \(f_{0}\) is the cutoff frequency, \(F_{s}\) is the sample rate, and \(Q\) is the Q-factor.</p>
             <p>Then, the filter coefficients can be calculated:</p>
             <ul>
-                <li>\(b_{0} = {{1 + cos(ω_{0})}\over{2}}\)</li>
-                <li>\(b_{1} = -(1 + cos(ω_{0}))\)</li>
-                <li>\(b_{2} = {{1 + cos(ω_{0})}\over{2}}\)</li>
+                <li>\(b_{0} = 1\)</li>
+                <li>\(b_{1} = -2cos(ω_{0})\)</li>
+                <li>\(b_{2} = 1\)</li>
                 <li>\(a_{0} = 1 + α\)</li>
                 <li>\(a_{1} = -2cos(ω_{0})\)</li>
                 <li>\(a_{2} = 1 - α\)</li>
@@ -435,9 +436,9 @@
                         <li><a href="digitalBiquadFilter.html">Digital Biquad Filters</a></li>
                         <ul>
                             <li><a href="lowPassFilter.html">Low Pass Filters</a></li>
-                            <li><a href="#"><b>High Pass Filters</b></a></li>
+                            <li><a href="highPassFilter.html">High Pass Filters</a></li>
                             <li><a href="bandPassFilter.html">Band Pass Filters</a></li>
-                            <li><a href="notchFilter.html">Notch Filters</a></li>
+                            <li><a href="#"><b>Notch Filters</b></a></li>
                         </ul>
                     </ul>
                     <h5>C++ Topics</h5>
