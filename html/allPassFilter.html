@@ -208,13 +208,13 @@
 <main class="container">
     <div class="row g-5">
         <div class="col-md-8 p-4">
-            <h1>Notch Filters</h1>
+            <h1>All Pass Filters</h1>
             <br>
             <h5 class="fst-italic"><a href="digitalBiquadFilter.html">Digital Biquad Filtering</a></h5>
             <hr>
             <h3>Brief:</h3>
             <br>
-            <p>A second-order biquad notch filter selectively attenuates a narrow band of frequencies around a specified center while allowing others to pass, using a combination of two poles and two zeros to shape its frequency response. It is implemented with a difference equation employing both feedback and feedforward coefficients, providing precise control over gain, center frequency, and bandwidth (Q factor).</p>
+            <p>A second-order biquad all-pass filter preserves the amplitude of all frequencies while altering their phase, using a combination of two poles and two zeros arranged symmetrically. It is implemented with a difference equation employing both feedback and feedforward coefficients, allowing precise control over the phase shift characteristics around a specified center frequency and bandwidth (Q factor). All-pass filters are often used in phase correction, group delay adjustment, and filter design applications.</p>
             <div class="row g-5">
                 <div class="col-md-8 d-flex flex-column h-100 p-0 ps-5">
                     <div id="magnitudePlot" class="flex-fill bg-gray p-0"></div>
@@ -254,12 +254,15 @@
                     const w0 = 2 * Math.PI * fc / fs;
                     const alpha = Math.sin(w0) / (2 * q);
 
-                    const b0 = 1;
-                    const b1 = -2 * Math.cos(w0);
-                    const b2 = 1;
-                    const a0 = 1 + alpha;
-                    const a1 = -2 * Math.cos(w0);
-                    const a2 = 1 - alpha;
+                    let b0 = 1 - alpha;
+                    let b1 = -2 * Math.cos(w0);
+                    let b2 = 1 + alpha;
+                    let a0 = 1 + alpha;
+                    let a1 = -2 * Math.cos(w0);
+                    let a2 = 1 - alpha;
+
+                    [b0, b1, b2, a1, a2] = [b0, b1, b2, a1, a2].map(c => c / a0);
+                    a0 = 1;
 
                     // Arrays to store magnitude and phase values
                     let mag = [];
@@ -309,7 +312,7 @@
 
                     // Layout settings for the magnitude plot
                     let magnitudeLayout = {
-                        title: { text: 'Notch Filter Frequency Response' },
+                        title: { text: 'All Pass Filter Frequency Response' },
                         xaxis: {
                             type: 'log',
                             tickvals: customTickVals,
@@ -396,7 +399,7 @@
             <hr>
             <h3>Formulae:</h3>
             <br>
-            <p>In order to construct a biquad notch filter, the <code>sample rate</code>, <code>cutoff frequency</code>, and <code>Q-factor</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
+            <p>In order to construct a biquad all-pass filter, the <code>sample rate</code>, <code>cutoff frequency</code>, and <code>Q-factor</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
             <p>First, some intermediate values are calculated:</p>
             <ul>
                 <li>\(ω_{0} = 2π{f_{0} \over F_{s}}\)</li>
@@ -405,9 +408,9 @@
             <p>Where \(f_{0}\) is the cutoff frequency, \(F_{s}\) is the sample rate, and \(Q\) is the Q-factor.</p>
             <p>Then, the filter coefficients can be calculated:</p>
             <ul>
-                <li>\(b_{0} = 1\)</li>
+                <li>\(b_{0} = 1 - α\)</li>
                 <li>\(b_{1} = -2cos(ω_{0})\)</li>
-                <li>\(b_{2} = 1\)</li>
+                <li>\(b_{2} = 1 + α\)</li>
                 <li>\(a_{0} = 1 + α\)</li>
                 <li>\(a_{1} = -2cos(ω_{0})\)</li>
                 <li>\(a_{2} = 1 - α\)</li>
@@ -438,8 +441,8 @@
                             <li><a href="lowPassFilter.html">Low Pass</a></li>
                             <li><a href="highPassFilter.html">High Pass</a></li>
                             <li><a href="bandPassFilter.html">Band Pass</a></li>
-                            <li><a href="#"><b>Notch</b></a></li>
-                            <li><a href="allPassFilter.html">All Pass</a></li>
+                            <li><a href="notchFilter.html">Notch</a></li>
+                            <li><a href="#"><b>All Pass</b></a></li>
                         </ul>
                     </ul>
                     <h5>C++ Topics</h5>

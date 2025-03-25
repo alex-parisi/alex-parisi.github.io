@@ -273,16 +273,16 @@
 
                         // Numerator: b0 + b1*e^(-j*w) + b2*e^(-j*2w)
                         let numReal = b0 + b1 * cosW + b2 * cos2W;
-                        let numImag = -(b1 * sinW + b2 * sin2W);
+                        let numImag = b1 * sinW + b2 * sin2W;
 
                         // Denominator: a0 + a1*e^(-j*w) + a2*e^(-j*2w)
                         let denReal = a0 + a1 * cosW + a2 * cos2W;
-                        let denImag = -(a1 * sinW + a2 * sin2W);
+                        let denImag = a1 * sinW + a2 * sin2W;
 
                         // Compute H = numerator/denom using complex division
                         let denMagSq = denReal * denReal + denImag * denImag;
-                        let Hreal = (numReal * denReal - numImag * denImag) / denMagSq;
-                        let Himag = (numImag * denReal + numReal * denImag) / denMagSq;
+                        let Hreal = (numReal * denReal + numImag * denImag) / denMagSq;
+                        let Himag = (numImag * denReal - numReal * denImag) / denMagSq;
                         let Hmag = Math.sqrt(Hreal * Hreal + Himag * Himag);
                         let Hphase = Math.atan2(Himag, Hreal);
                         mag.push(20 * Math.log10(Hmag));
@@ -438,6 +438,7 @@
                             <li><a href="highPassFilter.html">High Pass</a></li>
                             <li><a href="bandPassFilter.html">Band Pass</a></li>
                             <li><a href="notchFilter.html">Notch</a></li>
+                            <li><a href="allPassFilter.html">All Pass</a></li>
                         </ul>
                     </ul>
                     <h5>C++ Topics</h5>
