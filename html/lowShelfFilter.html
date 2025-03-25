@@ -208,13 +208,13 @@
 <main class="container">
     <div class="row g-5">
         <div class="col-md-8 p-4">
-            <h1>Peaking EQ Filters</h1>
+            <h1>Low Shelf Filters</h1>
             <br>
             <h5 class="fst-italic"><a href="digitalBiquadFilter.html">Digital Biquad Filtering</a></h5>
             <hr>
             <h3>Brief:</h3>
             <br>
-            <p>A second-order biquad peaking EQ filter boosts or attenuates a narrow band of frequencies around a specified center frequency while leaving others largely unaffected. It uses a combination of two poles and two zeros to sculpt the frequency response, creating a peak or dip at the target frequency. Implemented with a difference equation employing both feedback and feedforward coefficients, it provides precise control over gain, center frequency, and bandwidth (Q factor), making it ideal for tone shaping and targeted frequency adjustments.</p>
+            <p>A second-order biquad low-shelf filter boosts or attenuates frequencies below a specified cutoff point while leaving higher frequencies relatively unaffected. It uses two poles and two zeros to shape the transition between the affected and unaffected frequency ranges, creating a shelving response. Implemented using a difference equation with feedback and feedforward coefficients, it provides precise control over the gain, cutoff frequency, and slope of the shelf, making it useful for tonal adjustments in audio processing.</p>
             <div class="row g-5">
                 <div class="col-md-8 d-flex flex-column h-100 p-0 ps-5">
                     <div id="magnitudePlot" class="flex-fill bg-gray p-0"></div>
@@ -260,12 +260,12 @@
                     const w0 = 2 * Math.PI * fc / fs;
                     const alpha = Math.sin(w0) / (2 * q);
 
-                    const b0 = 1 + alpha * A;
-                    const b1 = -2 * Math.cos(w0);
-                    const b2 = 1 - alpha * A;
-                    const a0 = 1 + alpha / A;
-                    const a1 = -2 * Math.cos(w0);
-                    const a2 = 1 - alpha / A;
+                    const b0 = A * ((A + 1) - (A - 1) * Math.cos(w0) + 2 * Math.sqrt(A) * alpha);
+                    const b1 = 2 * A * ((A - 1) - (A + 1) * Math.cos(w0));
+                    const b2 = A * ((A + 1) - (A - 1) * Math.cos(w0) - 2 * Math.sqrt(A) * alpha);
+                    const a0 = (A + 1) + (A - 1) * Math.cos(w0) + 2 * Math.sqrt(A) * alpha;
+                    const a1 = -2 * ((A - 1) + (A + 1) * Math.cos(w0));
+                    const a2 = (A + 1) + (A - 1) * Math.cos(w0) - 2 * Math.sqrt(A) * alpha;
 
                     // Arrays to store magnitude and phase values
                     let mag = [];
@@ -315,7 +315,7 @@
 
                     // Layout settings for the magnitude plot
                     let magnitudeLayout = {
-                        title: { text: 'Peaking EQ Filter Frequency Response' },
+                        title: { text: 'Low Shelf Filter Frequency Response' },
                         xaxis: {
                             type: 'log',
                             tickvals: customTickVals,
@@ -419,7 +419,7 @@
             <hr>
             <h3>Formulae:</h3>
             <br>
-            <p>In order to construct a biquad notch filter, the <code>sample rate</code>, <code>cutoff frequency</code>, <code>Q-factor</code>, and <code>Gain (dB)</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
+            <p>In order to construct a biquad low shelf filter, the <code>sample rate</code>, <code>cutoff frequency</code>, <code>Q-factor</code>, and <code>Gain (dB)</code> need to be provided. From those, the coefficients for the underlying filter can be calculated:</p>
             <p>First, some intermediate values are calculated:</p>
             <ul>
                 <li>\(ω_{0} = 2π{f_{0} \over F_{s}}\)</li>
@@ -429,12 +429,12 @@
             <p>Where \(f_{0}\) is the cutoff frequency, \(F_{s}\) is the sample rate, and \(Q\) is the Q-factor.</p>
             <p>Then, the filter coefficients can be calculated:</p>
             <ul>
-                <li>\(b_{0} = 1 + αA\)</li>
-                <li>\(b_{1} = -2cos(ω_{0})\)</li>
-                <li>\(b_{2} = 1 - αA\)</li>
-                <li>\(a_{0} = 1 + {α \over A}\)</li>
-                <li>\(a_{1} = -2cos(ω_{0})\)</li>
-                <li>\(a_{2} = 1 - {α \over A}\)</li>
+                <li>\(b_{0} = A((A + 1) - (A - 1)cos(ω_{0}) + 2\sqrt{A}α)\)</li>
+                <li>\(b_{1} = 2A((A - 1) - (A + 1)cos(ω_{0}))\)</li>
+                <li>\(b_{2} = A((A + 1) - (A - 1)cos(ω_{0}) - 2\sqrt{A}α)\)</li>
+                <li>\(a_{0} = (A + 1) + (A - 1)cos(ω_{0}) + 2\sqrt{A}α\)</li>
+                <li>\(a_{1} = -2((A - 1) + (A + 1)cos(ω_{0})\)</li>
+                <li>\(a_{2} = (A + 1) + (A - 1)cos(ω_{0}) - 2\sqrt{A}α\)</li>
             </ul>
             <hr>
             <h3>Implementation</h3>
@@ -464,8 +464,8 @@
                             <li><a href="bandPassFilter.html">Band Pass</a></li>
                             <li><a href="notchFilter.html">Notch</a></li>
                             <li><a href="allPassFilter.html">All Pass</a></li>
-                            <li><a href="#"><b>Peaking EQ</b></a></li>
-                            <li><a href="lowShelfFilter.html">Low Shelf</a></li>
+                            <li><a href="peakingEQFilter.html">Peaking EQ</a></li>
+                            <li><a href="#"><b>Low Shelf</b></a></li>
                             <li><a href="highShelfFilter.html">High Shelf</a></li>
                         </ul>
                     </ul>
